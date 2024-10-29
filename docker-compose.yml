@@ -7,9 +7,9 @@ services:
     depends_on:
       - db
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Database=ferramentagestao;User Id=sa;Password=134679As@357;Encrypt=True;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=db;Database=avaliationemployee;User Id=sa;Password=134679As@357;Encrypt=True;TrustServerCertificate=True;
     ports:
-      - "5000:8080"
+      - "5001:8080"
     restart: always
 
   db:
@@ -18,7 +18,7 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=134679As@357
     ports:
-      - "1433:1433"
+      - "1434:1433"
     volumes:
       - db_data:/var/opt/mssql
     restart: always

@@ -1,5 +1,4 @@
 using _5W2H.Application.Models;
-using _5W2H.Core.Entities;
 using _5W2H.Core.Repositories;
 using MediatR;
 

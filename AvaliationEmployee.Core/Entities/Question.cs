@@ -4,10 +4,11 @@ public class Question : BaseEntity
 {
     public Question() { }
     
-    public Question(string texto)
+    public Question(string text)
     {
-        Texto = texto;
+        Text = text;
     }
 
-    public string Texto { get; set; } // Texto da pergunta
+    public string Text { get; set; } // Texto da pergunta
+    public virtual ICollection<Avaliation> Avaliations { get; set; } // Avaliações onde esta pergunta aparece
 }

@@ -2,18 +2,18 @@ namespace _5W2H.Core.Entities;
 
 public class Answer : BaseEntity
 {
-    public Answer(int avaliacaoId, Avaliation avaliation, int perguntaId, Question question, string textoResposta)
+    public Answer(int avaliacaoId, Avaliation avaliation, int perguntaId, Question question, int responseNumber)
     {
-        AvaliacaoId = avaliacaoId;
+        AvaliationId = avaliacaoId;
         Avaliation = avaliation;
-        PerguntaId = perguntaId;
+        QuestionId = perguntaId;
         Question = question;
-        TextoResposta = textoResposta;
+        ResponseNumber = responseNumber;
     }
 
-    public int AvaliacaoId { get; set; }
+    public int AvaliationId { get; set; }
     public Avaliation Avaliation { get; set; }
-    public int PerguntaId { get; set; }
+    public int QuestionId { get; set; }
     public Question Question { get; set; }
-    public string TextoResposta { get; set; } // Resposta para a pergunta
+    public int ResponseNumber { get; set; } 
 }

@@ -1,5 +1,4 @@
 using _5W2H.Core.Entities;
-using Action = System.Action;
 
 namespace _5W2H.Core.Repositories;
 

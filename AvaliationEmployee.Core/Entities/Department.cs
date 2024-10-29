@@ -1,5 +1,3 @@
-using _5W2H.Core.Enums;
-
 namespace _5W2H.Core.Entities
 {
     public class Department : BaseEntity

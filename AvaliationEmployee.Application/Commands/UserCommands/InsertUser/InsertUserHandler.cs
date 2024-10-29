@@ -1,7 +1,5 @@
-
 using _5W2H.Core.Repositories;
 using _5W2H.Core.Services;
-using _5W2H.Infrastructure.AuthServices;
 using MediatR;
 
 namespace _5W2H.Application.Commands.UserCommands.InsertUser;

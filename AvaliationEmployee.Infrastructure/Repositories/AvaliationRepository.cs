@@ -3,7 +3,6 @@ using _5W2H.Core.Repositories;
 using _5W2H.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace _5W2H.Infrastructure.Repositories;
 
 public class AvaliationRepository : IAvaliationRepository

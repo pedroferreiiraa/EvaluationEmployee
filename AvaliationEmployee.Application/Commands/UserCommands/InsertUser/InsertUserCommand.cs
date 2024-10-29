@@ -1,5 +1,4 @@
 using _5W2H.Core.Entities;
-using _5W2H.Core.Enums;
 using MediatR;
 
 namespace _5W2H.Application.Commands.UserCommands.InsertUser;

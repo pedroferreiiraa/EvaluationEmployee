@@ -1,5 +1,3 @@
-
-using System.Text.Json.Serialization;
 using _5W2H.Core.Enums;
 
 namespace _5W2H.Core.Entities;
@@ -7,7 +5,7 @@ namespace _5W2H.Core.Entities;
 public class Avaliation : BaseEntity
 {
    
-    public Avaliation(int colaboradorId, int avaliadorId, AvaliationStatusEnum status, IList<Answer> answers, IList<Question> questions)
+    public Avaliation(int colaboradorId, int avaliadorId, AvaliationStatusEnum status, ICollection<Answer> answers, ICollection<Question> questions)
     {
         ColaboradorId = colaboradorId;
         AvaliadorId = avaliadorId;
@@ -23,9 +21,8 @@ public class Avaliation : BaseEntity
     public User Avaliador { get; private set; }
     public DateTime CompletedAt { get; private set; }
     public DateTime StartedAt { get; private set; }
-
-    public IList<Answer> Answers { get; private set; } 
-    public IList<Question> Questions { get; private set;}
+    public virtual ICollection<Question> Questions { get; set; } // Perguntas da avaliação
+    public virtual ICollection<Answer> Answers { get; set; } // Respostas da avaliação
     public AvaliationStatusEnum Status { get; private set;}
 
 

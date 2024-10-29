@@ -1,9 +1,9 @@
 // File: _5W2H.Infrastructure.Persistence/WhoDbContext.cs
+
 using _5W2H.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace _5W2H.Infrastructure.Persistence
 {
@@ -52,12 +52,12 @@ namespace _5W2H.Infrastructure.Persistence
             modelBuilder.Entity<Answer>()
                 .HasOne(r => r.Avaliation)
                 .WithMany(a => a.Answers)
-                .HasForeignKey(r => r.AvaliacaoId);
+                .HasForeignKey(r => r.AvaliationId);
 
             modelBuilder.Entity<Answer>()
                 .HasOne(r => r.Question)
                 .WithMany()
-                .HasForeignKey(r => r.PerguntaId);
+                .HasForeignKey(r => r.QuestionId);
         }
     }
 }

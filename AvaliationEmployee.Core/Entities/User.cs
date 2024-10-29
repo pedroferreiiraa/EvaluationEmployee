@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using _5W2H.Core.Enums;
-
 namespace _5W2H.Core.Entities
 {
     public class User : BaseEntity
@@ -32,7 +29,7 @@ namespace _5W2H.Core.Entities
         public int SetorId { get; set; }
         
 
-        public void Update(string requestFullName, string fullName, string email, Department department)
+        public void Update(string fullName, string email, Department department)
         {
             FullName = fullName;
             Email = email;

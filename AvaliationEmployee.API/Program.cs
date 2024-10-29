@@ -2,7 +2,6 @@ using System.Text;
 using _5W2H.Api.ExceptionHandler;
 using _5W2H.Application;
 using _5W2H.Infrastructure;
-using _5W2H.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

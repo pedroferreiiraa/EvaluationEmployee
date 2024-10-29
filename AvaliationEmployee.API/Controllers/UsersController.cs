@@ -5,7 +5,6 @@ using _5W2H.Application.Commands.UserCommands.UpdateUser;
 using _5W2H.Application.Queries.UsersQueries.GetAllUsers;
 using _5W2H.Application.Queries.UsersQueries.GetUserById;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _5W2H.Api.Controllers;

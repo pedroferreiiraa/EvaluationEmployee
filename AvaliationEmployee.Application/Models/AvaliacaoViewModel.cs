@@ -1,7 +1,5 @@
 using _5W2H.Core.Entities;
 using _5W2H.Core.Enums;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace _5W2H.Application.Models
 {
