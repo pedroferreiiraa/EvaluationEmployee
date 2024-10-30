@@ -12,8 +12,8 @@ using _5W2H.Infrastructure.Persistence;
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WhoDbContext))]
-    [Migration("20241030162954_TerceiraMigration")]
-    partial class TerceiraMigration
+    [Migration("20241030185623_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AvaliationQuestion", b =>
-                {
-                    b.Property<int>("AvaliationsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuestionsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AvaliationsId", "QuestionsId");
-
-                    b.HasIndex("QuestionsId");
-
-                    b.ToTable("AvaliationQuestion");
-                });
 
             modelBuilder.Entity("_5W2H.Core.Entities.Answer", b =>
                 {
@@ -65,9 +50,10 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AvaliationId");
-
                     b.HasIndex("QuestionId");
+
+                    b.HasIndex("AvaliationId", "QuestionId")
+                        .IsUnique();
 
                     b.ToTable("Answers");
                 });
@@ -83,9 +69,6 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.Property<int>("AvaliadorId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CompletedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -95,14 +78,7 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("StartedAt")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("AvaliadorId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Avaliations");
                 });
@@ -158,6 +134,10 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Questions");
@@ -210,21 +190,6 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("AvaliationQuestion", b =>
-                {
-                    b.HasOne("_5W2H.Core.Entities.Avaliation", null)
-                        .WithMany()
-                        .HasForeignKey("AvaliationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("_5W2H.Core.Entities.Question", null)
-                        .WithMany()
-                        .HasForeignKey("QuestionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("_5W2H.Core.Entities.Answer", b =>
                 {
                     b.HasOne("_5W2H.Core.Entities.Avaliation", "Avaliation")
@@ -242,25 +207,6 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.Navigation("Avaliation");
 
                     b.Navigation("Question");
-                });
-
-            modelBuilder.Entity("_5W2H.Core.Entities.Avaliation", b =>
-                {
-                    b.HasOne("_5W2H.Core.Entities.User", "Avaliador")
-                        .WithMany()
-                        .HasForeignKey("AvaliadorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("_5W2H.Core.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Avaliador");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("_5W2H.Core.Entities.Department", b =>

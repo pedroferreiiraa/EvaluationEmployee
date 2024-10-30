@@ -1,5 +1,3 @@
-// File: _5W2H.Infrastructure.Persistence/WhoDbContext.cs
-
 using _5W2H.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -37,43 +35,36 @@ namespace _5W2H.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuração de relacionamento para 'Lider' em 'Department'
-            modelBuilder.Entity<Department>()
-                .HasOne(d => d.Lider)
-                .WithMany()
-                .HasForeignKey(d => d.LiderId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Avaliation>()
+                .HasMany(a => a.Answers)
+                .WithOne(ans => ans.Avaliation)
+                .HasForeignKey(ans => ans.AvaliationId);
 
-            // Configuração de relacionamento para 'Gestor' em 'Department'
+            modelBuilder.Entity<Answer>()
+                .HasOne(ans => ans.Question)
+                .WithMany()
+                .HasForeignKey(ans => ans.QuestionId);
+
+            modelBuilder.Entity<Answer>()
+                .HasIndex(ans => new { ans.AvaliationId, ans.QuestionId })
+                .IsUnique();
             modelBuilder.Entity<Department>()
                 .HasOne(d => d.Gestor)
                 .WithMany()
                 .HasForeignKey(d => d.GestorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Configuração existente para 'Avaliation'
-            modelBuilder.Entity<Avaliation>()
-                .HasOne(a => a.User)
+            modelBuilder.Entity<Department>()
+                .HasOne(d => d.Lider)
                 .WithMany()
-                .HasForeignKey(a => a.EmployeeId)
+                .HasForeignKey(d => d.LiderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Avaliation>()
-                .HasOne(a => a.Avaliador)
-                .WithMany()
-                .HasForeignKey(a => a.AvaliadorId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Department)
+                .WithMany(d => d.Users)
+                .HasForeignKey(u => u.DepartmentId);
 
-            // Configuração existente para 'Answer'
-            modelBuilder.Entity<Answer>()
-                .HasOne(r => r.Avaliation)
-                .WithMany(a => a.Answers)
-                .HasForeignKey(r => r.AvaliationId);
-
-            modelBuilder.Entity<Answer>()
-                .HasOne(r => r.Question)
-                .WithMany()
-                .HasForeignKey(r => r.QuestionId);
         }
 
     }

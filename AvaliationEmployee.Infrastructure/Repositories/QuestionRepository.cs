@@ -21,7 +21,7 @@ namespace _5W2H.Infrastructure.Repositories
                 .SingleOrDefaultAsync(q => q.Id == id) ?? throw new KeyNotFoundException($"Question with ID {id} not found.");
         }
 
-        public async Task<IEnumerable<Question>> GetQuestionsByIdsAsync(List<int> ids)
+        public async Task<List<Question>> GetQuestionsByIdsAsync(List<int> ids)
         {
             return await _context.Questions
                 .Where(q => ids.Contains(q.Id))
