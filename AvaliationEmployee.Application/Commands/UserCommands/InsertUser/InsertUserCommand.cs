@@ -11,10 +11,10 @@ public class InsertUserCommand : IRequest<int>
     public string Email { get; set; }
     public string Role { get; set; }
     public int DepartmentId { get; set; }
+    public int CodFuncionario { get; set;}
+    public string TypeMO { get; set; }
 
 
     public User ToEntity(string passwordHash)
-    {
-        throw new NotImplementedException();
-    }
+        => new User(FullName, Email, passwordHash, Role, DepartmentId, CodFuncionario, TypeMO);
 }

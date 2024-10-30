@@ -22,4 +22,8 @@
       <Compile Remove="Models\CreateProjectInputModel.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Queries\AnwersQueries\" />
+    </ItemGroup>
+
 </Project>

@@ -11,4 +11,7 @@ public class UpdateUserCommand : IRequest<ResultViewModel<int>>
     public string Email { get;  set; }
     public string Role  { get;  set; }
     public Department Department { get; set; }
+    
+    // public User ToEntity()
+        // => new User(FullName, Email, Role, Department);
 }

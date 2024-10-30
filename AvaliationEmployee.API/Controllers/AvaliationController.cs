@@ -1,3 +1,4 @@
+using _5W2H.Application.Commands.AvaliationsCommands.InsertAvaliation;
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
@@ -14,8 +15,13 @@ public class AvaliationController : ControllerBase
         _mediator = mediator;
             
     }
-    
-   
+
+    [HttpPost]
+    public async Task<IActionResult> Post(InsertAvaliationCommand command)
+    {
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
 
     
 }

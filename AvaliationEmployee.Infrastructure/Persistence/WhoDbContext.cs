@@ -37,10 +37,25 @@ namespace _5W2H.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Configuração de relacionamento para 'Lider' em 'Department'
+            modelBuilder.Entity<Department>()
+                .HasOne(d => d.Lider)
+                .WithMany()
+                .HasForeignKey(d => d.LiderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuração de relacionamento para 'Gestor' em 'Department'
+            modelBuilder.Entity<Department>()
+                .HasOne(d => d.Gestor)
+                .WithMany()
+                .HasForeignKey(d => d.GestorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuração existente para 'Avaliation'
             modelBuilder.Entity<Avaliation>()
                 .HasOne(a => a.User)
                 .WithMany()
-                .HasForeignKey(a => a.ColaboradorId)
+                .HasForeignKey(a => a.EmployeeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Avaliation>()
@@ -49,6 +64,7 @@ namespace _5W2H.Infrastructure.Persistence
                 .HasForeignKey(a => a.AvaliadorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Configuração existente para 'Answer'
             modelBuilder.Entity<Answer>()
                 .HasOne(r => r.Avaliation)
                 .WithMany(a => a.Answers)
@@ -59,5 +75,6 @@ namespace _5W2H.Infrastructure.Persistence
                 .WithMany()
                 .HasForeignKey(r => r.QuestionId);
         }
+
     }
 }

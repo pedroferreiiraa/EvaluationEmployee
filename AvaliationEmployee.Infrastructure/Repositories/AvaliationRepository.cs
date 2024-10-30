@@ -81,21 +81,5 @@ public class AvaliationRepository : IAvaliationRepository
 
     }
 
-    public async Task<Avaliation> StartAsync(int id)
-    {
-        var existingProject = await _context.Avaliations.SingleOrDefaultAsync(p => p.Id == id);
-
-        if (existingProject == null)
-        {
-            return null;
-        }
-    
-        existingProject.Start(); // Método para iniciar o projeto
-    
-        await _context.SaveChangesAsync();
-    
-        return existingProject;
-    }
-
     
 }

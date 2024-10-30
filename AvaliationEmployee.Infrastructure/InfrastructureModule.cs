@@ -37,6 +37,8 @@ public static class InfrastructureModule
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAvaliationRepository, AvaliationRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+        services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<IAnswerRepository, AnswerRepository>();
         services.AddScoped<IAuthService, AuthService>();
 
     

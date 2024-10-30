@@ -1,4 +1,6 @@
 using _5W2H.Application.Commands.QuestionCommands.InsertQuestion;
+using _5W2H.Application.Models;
+using Azure;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,7 @@ namespace _5W2H.Api.Controllers;
 
 [ApiController]
 [Route("/api/questions")]
-public class QuestionsController
+public class QuestionsController : ControllerBase
 {
     private readonly IMediator _mediator;
 
@@ -43,7 +45,10 @@ public class QuestionsController
     [HttpPost]
     public async Task<IActionResult> Post(InsertQuestionCommand command)
     {
-        var question = await _mediator.Send(command);
-        return Ok(question);
+        var result = await _mediator.Send(command);
+        
+        return Ok(result);
     }
+
+    
 }
