@@ -10,8 +10,8 @@ public class Answer : BaseEntity
     }
 
     public int AvaliationId { get; private set; }
-    public Avaliation Avaliation { get; private set; }
+    public UserAvaliation UserAvaliation { get; private set; }
     public int QuestionId { get; private set; }
-    public Question Question { get; private set; }
+    public UserQuestion UserQuestion { get; private set; }
     public int AnswerNumber { get; private set; }
 }

@@ -7,9 +7,9 @@ namespace _5W2H.Infrastructure.Repositories;
 
 public class DepartmentRepository : IDepartmentRepository
 {
-    private readonly WhoDbContext _context;
+    private readonly AvaliationDbContext _context;
     
-    public DepartmentRepository(WhoDbContext context)
+    public DepartmentRepository(AvaliationDbContext context)
     {
         _context = context;
     }

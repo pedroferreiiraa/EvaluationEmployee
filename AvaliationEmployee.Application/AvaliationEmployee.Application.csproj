@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Queries\AnwersQueries\GetAnswerById\" />
+      <Folder Include="Queries\UserAnwersQueries\GetUserAnswerById\" />
     </ItemGroup>
 
 </Project>

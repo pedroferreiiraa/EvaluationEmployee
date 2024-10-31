@@ -23,7 +23,7 @@ public static class InfrastructureModule
     private static IServiceCollection AddData(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
-        services.AddDbContext<WhoDbContext>(o => o.UseSqlServer(connectionString));
+        services.AddDbContext<AvaliationDbContext>(o => o.UseSqlServer(connectionString));
         return services;
         
     }
@@ -35,10 +35,10 @@ public static class InfrastructureModule
 
         
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IAvaliationRepository, AvaliationRepository>();
+        services.AddScoped<IUserAvaliationRepository, UserAvaliationRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-        services.AddScoped<IQuestionRepository, QuestionRepository>();
-        services.AddScoped<IAnswerRepository, AnswerRepository>();
+        services.AddScoped<IUserQuestionRepository, UserQuestionRepository>();
+        services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
         services.AddScoped<IAuthService, AuthService>();
 
     

@@ -11,7 +11,7 @@ using _5W2H.Infrastructure.Persistence;
 
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(WhoDbContext))]
+    [DbContext(typeof(AvaliationDbContext))]
     [Migration("20241031133424_SegundaMigration")]
     partial class SegundaMigration
     {
