@@ -3,7 +3,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById
 {
-    public class GetUserAvaliationByIdQuery : IRequest<UserAvaliationViewModel>
+    public class GetUserAvaliationByIdQuery : IRequest<ResultViewModel<UserAvaliationViewModel>>
     {
         public GetUserAvaliationByIdQuery(int id)
         {

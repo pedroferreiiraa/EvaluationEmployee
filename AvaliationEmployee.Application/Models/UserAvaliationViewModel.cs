@@ -14,6 +14,9 @@ namespace _5W2H.Application.Models
 
         public List<QuestionViewModel> Questions { get; set; } = new();
         public List<AnswerViewModel> Answers { get; set; } = new();
+
+        public static UserAvaliationViewModel FromEntity(UserAvaliation userAvaliation)
+            => new ();
     }
     
     
