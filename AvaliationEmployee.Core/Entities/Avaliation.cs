@@ -4,28 +4,25 @@ namespace _5W2H.Core.Entities;
 
 public class Avaliation : BaseEntity
 {
-    public Avaliation() {}
-    public Avaliation(int colaboradorId, int avaliadorId, ICollection<Answer> answers, ICollection<Question> questions)
+    public Avaliation(int employeeId)
     {
-        EmployeeId = colaboradorId;
-        AvaliadorId = avaliadorId;
-        
-        Answers = answers ?? new List<Answer>(); 
-        Questions = questions ?? new List<Question>(); 
+        EmployeeId = employeeId;
+
+        Answers = new List<Answer>();
     }
+
+    public int EmployeeId { get; private set; }
     
+    public virtual ICollection<Question> Questions { get; private set; }
+    public virtual ICollection<Answer> Answers { get; private set; }
 
-    public int EmployeeId { get; private set; } 
-    public int AvaliadorId { get; private set; }
-    public User User { get; private set; }
-    public User Avaliador { get; private set; }
-    public DateTime CompletedAt { get; private set; }
-    public DateTime StartedAt { get; private set; }
-    public virtual ICollection<Question> Questions { get; set; } // Perguntas da avaliação
-    public virtual ICollection<Answer> Answers { get; set; } // Respostas da avaliação
-   
-
-
-   
-    
+    public void AddAnswer(int questionId, int answerNumber)
+    {
+        // Verifique se já existe uma resposta para essa pergunta
+        if (Answers.Any(a => a.QuestionId == questionId))
+        {
+            throw new InvalidOperationException("A resposta para esta pergunta já foi adicionada.");
+        }
+        Answers.Add(new Answer(this.Id, questionId, answerNumber));
+    }
 }

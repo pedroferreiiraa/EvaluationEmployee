@@ -24,8 +24,8 @@ namespace _5W2H.Core.Entities
         public string Role { get; private set; }
         public string TypeMo { get; private set; }
         public int CodFuncionario { get; private set; }
-        public Department Department { get; private set; } 
         public int? DepartmentId { get; private set; }
+        public Department Department { get; private set; }
         
 
         public void Update(string fullName, string email, Department department)

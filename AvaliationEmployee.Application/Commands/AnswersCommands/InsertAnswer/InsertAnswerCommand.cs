@@ -6,10 +6,10 @@ namespace _5W2H.Application.Commands.AnswersCommands.InsertAnswer;
 
 public class InsertAnswerCommand : IRequest<ResultViewModel<int>>
 {
-    public int QuestionId { get; set; }
     public int AvaliationId { get; set; }
+    public int QuestionId { get; set; }
     public int AnswerNumber { get; set; }
     
     public Answer ToEntity()
-        => new(QuestionId, AvaliationId, AnswerNumber);
+        => new(AvaliationId, QuestionId, AnswerNumber);
 }

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UsersQueries.GetAllUsers;
 
-public class GetAllUsersQuery : IRequest<ResultViewModel<List<ColaboradorViewModel>>>
+public class GetAllUsersQuery : IRequest<ResultViewModel<List<UserViewModel>>>
 {
    
 }

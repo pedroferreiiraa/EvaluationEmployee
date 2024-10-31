@@ -7,7 +7,8 @@ namespace _5W2H.Application.Commands.QuestionCommands.InsertQuestion;
 public class InsertQuestionCommand : IRequest<ResultViewModel<int>>
 {
     public string Text { get; set; }
+    public string Topic { get; set; }
     
     public Question ToEntity()
-        => new(Text);
+        => new(Text, Topic);
 }

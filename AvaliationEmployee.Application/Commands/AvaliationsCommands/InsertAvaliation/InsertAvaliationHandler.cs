@@ -1,49 +1,38 @@
 using _5W2H.Core.Entities;
 using _5W2H.Core.Repositories;
 using MediatR;
+using _5W2H.Application.DTOs; // Adicione esta linha
 using _5W2H.Application.Models;
 
-namespace _5W2H.Application.Commands.AvaliationsCommands.InsertAvaliation;
-
-public class InsertAvaliationHandler : IRequestHandler<InsertAvaliationCommand, ResultViewModel<int>>
+namespace _5W2H.Application.Commands.AvaliationsCommands.InsertAvaliation
 {
-    private readonly IAvaliationRepository _avaliationRepository;
-    private readonly IQuestionRepository _questionRepository;
-    private readonly IAnswerRepository _answerRepository;
-
-    public InsertAvaliationHandler(IAvaliationRepository avaliationRepository, 
-        IQuestionRepository questionRepository, 
-        IAnswerRepository answerRepository)
+    public class InsertAvaliationHandler : IRequestHandler<InsertAvaliationCommand, ResultViewModel<int>>
     {
-        _avaliationRepository = avaliationRepository;
-        _questionRepository = questionRepository;
-        _answerRepository = answerRepository;
-    }
+        private readonly IAvaliationRepository _avaliationRepository;
+        private readonly IQuestionRepository _questionRepository;
 
-    public async Task<ResultViewModel<int>> Handle(InsertAvaliationCommand request, CancellationToken cancellationToken)
-    {
-        // 1. Busque as perguntas associadas e converta para List<Question>
-        var questions = (await _questionRepository.GetQuestionsByIdsAsync(request.QuestionIds)).ToList();
-        
-        // 2. Busque as respostas, se forem parte da criação, e converta para List<Answer>
-        var answers = new List<Answer>();
-        if (request.AnswerIds.Count > 0)
+        public InsertAvaliationHandler(IAvaliationRepository avaliationRepository, IQuestionRepository questionRepository)
         {
-            answers = (await _answerRepository.GetAnswersByIdsAsync(request.AnswerIds)).ToList();
+            _avaliationRepository = avaliationRepository;
+            _questionRepository = questionRepository;
         }
 
-        // 3. Crie a nova Avaliação
-        var avaliation = new Avaliation(
-            request.EmployeeId,
-            request.AvaliadorId,
-            answers,
-            questions
-        );
+        public async Task<ResultViewModel<int>> Handle(InsertAvaliationCommand request, CancellationToken cancellationToken)
+        {
+            // Validar se os QuestionIds são válidos
+            var questionIds = request.Answers.Select(a => a.QuestionId).ToList();
+            var validQuestions = await _questionRepository.GetQuestionsByIdsAsync(questionIds);
+            if (validQuestions.Count != questionIds.Count)
+            {
+                return ResultViewModel<int>.Error("Uma ou mais perguntas são inválidas.");
+            }
 
-        // 4. Salve a avaliação no repositório
-        await _avaliationRepository.AddAsync(avaliation);
-        await _avaliationRepository.SaveChangesAsync();
+            var avaliation = request.ToEntity();
 
-        return ResultViewModel<int>.Success(avaliation.Id);
+            await _avaliationRepository.AddAsync(avaliation);
+            await _avaliationRepository.SaveChangesAsync();
+
+            return ResultViewModel<int>.Success(avaliation.Id);
+        }
     }
 }

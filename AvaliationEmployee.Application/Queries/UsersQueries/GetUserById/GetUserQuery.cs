@@ -3,7 +3,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UsersQueries.GetUserById;
 
-public class GetUserQuery : IRequest<ColaboradorViewModel>
+public class GetUserQuery : IRequest<UserViewModel>
 {
     public GetUserQuery(int id)
     {

@@ -1,4 +1,5 @@
 using _5W2H.Application.Commands.AvaliationsCommands.InsertAvaliation;
+using _5W2H.Application.Queries.AvaliationQueries.GetAllAvaliations;
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
@@ -23,5 +24,12 @@ public class AvaliationController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAllAvaliations()
+    {
+        var query = new GetAllAvaliationsQuery();
+        var avaliations = await _mediator.Send(query);
+        return Ok(avaliations);
+    }
     
 }

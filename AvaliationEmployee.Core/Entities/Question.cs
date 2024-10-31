@@ -1,14 +1,16 @@
-namespace _5W2H.Core.Entities;
-
-public class Question : BaseEntity
+namespace _5W2H.Core.Entities
 {
-    public Question() { }
-    
-    public Question(string text)
+    public class Question : BaseEntity
     {
-        Text = text;
-    }
+        public Question() { }
+    
+        public Question(string text, string topic)
+        {
+            Text = text;
+            Topic = topic;
+        }
 
-    public string Text { get; set; } // Texto da pergunta
-    public virtual ICollection<Avaliation> Avaliations { get; set; } // Avaliações onde esta pergunta aparece
+        public string Text { get; set; } 
+        public string Topic { get; set; }
+    }
 }

@@ -17,7 +17,8 @@ public class AvaliationRepository : IAvaliationRepository
     public async Task<List<Avaliation>> GetAllAsync()
     {
         return await _context.Avaliations
-          
+            .Include(a => a.Questions)
+            .Include(a => a.Answers)
             .ToListAsync();
     }
 

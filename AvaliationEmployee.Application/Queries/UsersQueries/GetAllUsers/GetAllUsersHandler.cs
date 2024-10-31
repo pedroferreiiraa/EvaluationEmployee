@@ -4,7 +4,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UsersQueries.GetAllUsers;
 
-public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, ResultViewModel<List<ColaboradorViewModel>>>
+public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, ResultViewModel<List<UserViewModel>>>
 {
     private readonly IUserRepository _userRepository;
     public GetAllUsersHandler(IUserRepository userRepository)
@@ -12,18 +12,18 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, ResultViewMo
         _userRepository = userRepository;
     }
     
-    public async Task<ResultViewModel<List<ColaboradorViewModel>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+    public async Task<ResultViewModel<List<UserViewModel>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
     {
         var users = await _userRepository.GetAllAsync(); 
 
         if (users == null || !users.Any()) 
         {
-            return ResultViewModel<List<ColaboradorViewModel>>.Error("Nenhum usuário encontrado.");
+            return ResultViewModel<List<UserViewModel>>.Error("Nenhum usuário encontrado.");
         }
 
         // Mapear os usuários para UserViewModel
-        var userViewModels = users.Select(user => new ColaboradorViewModel(user)).ToList();
+        var userViewModels = users.Select(user => new UserViewModel(user)).ToList();
 
-        return ResultViewModel<List<ColaboradorViewModel>>.Success(userViewModels);
+        return ResultViewModel<List<UserViewModel>>.Success(userViewModels);
     }
 }

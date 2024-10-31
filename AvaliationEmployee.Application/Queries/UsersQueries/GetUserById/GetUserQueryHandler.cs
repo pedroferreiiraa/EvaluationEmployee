@@ -4,7 +4,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UsersQueries.GetUserById;
 
-public class GetUserQueryHandler : IRequestHandler<GetUserQuery, ColaboradorViewModel>
+public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserViewModel>
 {
     private readonly IUserRepository _userRepository;
     public GetUserQueryHandler(IUserRepository userRepository)
@@ -13,7 +13,7 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, ColaboradorView
     }
     
     
-    public async Task<ColaboradorViewModel> Handle(GetUserQuery request, CancellationToken cancellationToken)
+    public async Task<UserViewModel> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(request.Id);
 
@@ -22,6 +22,6 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, ColaboradorView
             return null;
         }
 
-        return new ColaboradorViewModel(user);
+        return new UserViewModel(user);
     }
 }
