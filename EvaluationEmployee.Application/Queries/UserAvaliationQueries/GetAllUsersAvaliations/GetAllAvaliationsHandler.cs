@@ -25,7 +25,8 @@ namespace _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations
             Questions = avaliation.Questions.Select(q => new QuestionViewModel
             {
                 QuestionId = q.Id,
-                Text = q.Text
+                Text = q.Text,
+                Topic = q.Topic,
             }).ToList(),
             Answers = avaliation.Answers.Select(a => new AnswerViewModel
             {

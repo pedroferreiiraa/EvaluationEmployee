@@ -16,7 +16,18 @@ namespace _5W2H.Application.Models
         public List<AnswerViewModel> Answers { get; set; } = new();
 
         public static UserAvaliationViewModel FromEntity(UserAvaliation userAvaliation)
-            => new ();
+        {
+            return new UserAvaliationViewModel
+            {
+                AvaliationId = userAvaliation.Id,
+                EmployeeId = userAvaliation.EmployeeId,
+                EvaluatorId = userAvaliation.EvaluatorId,
+                StartedAt = userAvaliation.StartedAt,
+                CompletedAt = userAvaliation.CompletedAt,
+                Questions = userAvaliation.Questions.Select(q => QuestionViewModel.FromEntity(q)).ToList(),
+                Answers = userAvaliation.Answers.Select(a => AnswerViewModel.FromEntity(a)).ToList()
+            };
+        }
     }
     
     

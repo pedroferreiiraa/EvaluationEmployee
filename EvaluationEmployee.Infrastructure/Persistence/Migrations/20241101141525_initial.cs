@@ -6,25 +6,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Avaliations",
+                name: "UserAvaliations",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    AvaliadorId = table.Column<int>(type: "int", nullable: false),
+                    EvaluatorId = table.Column<int>(type: "int", nullable: false),
+                    StartedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CompletedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliations", x => x.Id);
+                    table.PrimaryKey("PK_UserAvaliations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,12 +37,18 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Topic = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserAvaliationId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_UserAvaliations_UserAvaliationId",
+                        column: x => x.UserAvaliationId,
+                        principalTable: "UserAvaliations",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -59,15 +67,15 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Answers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answers_Avaliations_AvaliationId",
-                        column: x => x.AvaliationId,
-                        principalTable: "Avaliations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Answers_Questions_QuestionId",
                         column: x => x.QuestionId,
                         principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Answers_UserAvaliations_AvaliationId",
+                        column: x => x.AvaliationId,
+                        principalTable: "UserAvaliations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -137,6 +145,11 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                 column: "LiderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Questions_UserAvaliationId",
+                table: "Questions",
+                column: "UserAvaliationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_DepartmentId",
                 table: "Users",
                 column: "DepartmentId");
@@ -173,10 +186,10 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                 name: "Answers");
 
             migrationBuilder.DropTable(
-                name: "Avaliations");
+                name: "Questions");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "UserAvaliations");
 
             migrationBuilder.DropTable(
                 name: "Users");

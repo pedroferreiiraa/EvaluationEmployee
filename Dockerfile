@@ -4,17 +4,17 @@ WORKDIR /src
 
 # Copiar os arquivos de solução e de projeto
 COPY *.sln ./
-COPY AvaliationEmployee.API/*.csproj AvaliationEmployee.API/
-COPY AvaliationEmployee.Application/*.csproj AvaliationEmployee.Application/
-COPY AvaliationEmployee.Core/*.csproj AvaliationEmployee.Core/
-COPY AvaliationEmployee.Infrastructure/*.csproj AvaliationEmployee.Infrastructure/
+COPY EvaluationEmployee.API/*.csproj EvaluationEmployee.API/
+COPY EvaluationEmployee.Application/*.csproj EvaluationEmployee.Application/
+COPY EvaluationEmployee.Core/*.csproj EvaluationEmployee.Core/
+COPY EvaluationEmployee.Infrastructure/*.csproj EvaluationEmployee.Infrastructure/
 
 # Restaurar as dependências
 RUN dotnet restore
 
 # Copiar todo o código-fonte e compilar a aplicação
 COPY . .
-WORKDIR /src/AvaliationEmployee.API
+WORKDIR /src/EvaluationEmployee.API
 RUN dotnet publish -c Release -o /app/publish
 
 # Etapa 2: Runtime
@@ -26,4 +26,4 @@ COPY --from=build /app/publish .
 EXPOSE 80
 
 # Definir o entrypoint
-ENTRYPOINT ["dotnet", "AvaliationEmployee.API.dll"]
+ENTRYPOINT ["dotnet", "EvaluationEmployee.API.dll"]

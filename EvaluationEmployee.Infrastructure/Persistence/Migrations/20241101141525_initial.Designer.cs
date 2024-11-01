@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _5W2H.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using _5W2H.Infrastructure.Persistence;
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AvaliationDbContext))]
-    partial class WhoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241101141525_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +166,7 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Avaliations");
+                    b.ToTable("UserAvaliations");
                 });
 
             modelBuilder.Entity("_5W2H.Core.Entities.UserQuestion", b =>

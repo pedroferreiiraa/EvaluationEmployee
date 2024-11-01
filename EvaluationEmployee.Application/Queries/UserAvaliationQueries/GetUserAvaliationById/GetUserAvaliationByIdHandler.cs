@@ -14,17 +14,17 @@ namespace _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById
         }
         
         public async Task<ResultViewModel<UserAvaliationViewModel>> Handle(GetUserAvaliationByIdQuery request, CancellationToken cancellationToken)
+    {
+        var avaliation = await _repository.GetByIdAsync(request.Id);
+
+        if (avaliation == null)
         {
-            var avaliation = await _repository.GetByIdAsync(request.Id);
-
-            if (avaliation == null)
-            {
-                return null;
-            }
-
-            var model = UserAvaliationViewModel.FromEntity(avaliation);
-
-            return ResultViewModel<UserAvaliationViewModel>.Success(model);
+            return ResultViewModel<UserAvaliationViewModel>.Error("Avaliação não encontrada.");
         }
+
+        var model = UserAvaliationViewModel.FromEntity(avaliation);
+
+        return ResultViewModel<UserAvaliationViewModel>.Success(model);
+    }
     }
 }

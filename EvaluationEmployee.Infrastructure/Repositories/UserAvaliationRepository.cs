@@ -16,7 +16,7 @@ public class UserAvaliationRepository : IUserAvaliationRepository
     
     public async Task<List<UserAvaliation>> GetAllAsync()
     {
-        return await _context.Avaliations
+        return await _context.UserAvaliations
             .Include(a => a.Questions)
             .Include(a => a.Answers)
             .ToListAsync();
@@ -24,15 +24,15 @@ public class UserAvaliationRepository : IUserAvaliationRepository
 
     public async Task<UserAvaliation> GetByIdAsync(int id)
     {
-        return await _context.Avaliations
+        return await _context.UserAvaliations
             .Include(ua => ua.Questions)
             .Include(ua => ua.Answers)
-            .FirstOrDefaultAsync(ua => ua.Id == id && !ua.IsDeleted);
+            .FirstOrDefaultAsync(ua => ua.Id == id);
     }
 
     public async Task<List<UserAvaliation>> GetByUserIdAsync(int userId)
     {
-        return await _context.Avaliations
+        return await _context.UserAvaliations
             .Include(a => a.Questions)
             .Include(a => a.Answers)
             .Where(a => a.EmployeeId == userId)
@@ -41,7 +41,7 @@ public class UserAvaliationRepository : IUserAvaliationRepository
 
     public async Task<UserAvaliation> GetByIdWithActionsAsync(int id)
     {
-        return await _context.Avaliations
+        return await _context.UserAvaliations
            
             .SingleOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
     }
@@ -49,7 +49,7 @@ public class UserAvaliationRepository : IUserAvaliationRepository
 
     public async Task<int> AddAsync(UserAvaliation userAvaliation)
     {
-        await _context.Avaliations.AddAsync(userAvaliation);
+        await _context.UserAvaliations.AddAsync(userAvaliation);
         await _context.SaveChangesAsync(); 
         return userAvaliation.Id;
     }
@@ -57,13 +57,13 @@ public class UserAvaliationRepository : IUserAvaliationRepository
 
     public async Task UpdateAsync(UserAvaliation userAvaliation)
     {
-        _context.Avaliations.Update(userAvaliation);
+        _context.UserAvaliations.Update(userAvaliation);
         await _context.SaveChangesAsync();
     }
 
     public async Task<bool> Exists(int id)
     {
-        return await _context.Avaliations.AnyAsync(p => p.Id == id);
+        return await _context.UserAvaliations.AnyAsync(p => p.Id == id);
     }
 
     public async Task SaveChangesAsync()
@@ -73,19 +73,19 @@ public class UserAvaliationRepository : IUserAvaliationRepository
 
     public IQueryable<UserAvaliation> Query()
     {
-        return _context.Avaliations.AsQueryable();
+        return _context.UserAvaliations.AsQueryable();
     }
 
     public async Task<int> DeleteAsync(int id)
     {
-        var project =  _context.Avaliations.SingleOrDefault(p => p.Id == id);
+        var project =  _context.UserAvaliations.SingleOrDefault(p => p.Id == id);
         
         if (project == null)
             throw new InvalidOperationException("Projeto não encontrado");
         
         project.SetAsDeleted();
         
-        _context.Avaliations.Update(project);
+        _context.UserAvaliations.Update(project);
         
         await _context.SaveChangesAsync();
 

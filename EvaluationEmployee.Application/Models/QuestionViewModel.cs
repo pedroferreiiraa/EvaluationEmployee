@@ -8,6 +8,7 @@ namespace _5W2H.Application.Models
 {
     public class QuestionViewModel
     {
+        public QuestionViewModel() {}
         public QuestionViewModel(int questionId, string text, string topic) 
         {
             QuestionId = questionId;
