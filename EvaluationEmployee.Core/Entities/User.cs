@@ -5,7 +5,7 @@ namespace _5W2H.Core.Entities
         
         public User() { }
         
-        public User(string fullName, string email, string password, string role, int departmentId, int codFuncionario, string typeMo)
+        public User(string fullName, string email, string password, string role, int? departmentId, int codFuncionario, string typeMo)
         {
             FullName = fullName;
             Email = email;
@@ -28,11 +28,13 @@ namespace _5W2H.Core.Entities
         public Department Department { get; private set; }
         
 
-        public void Update(string fullName, string email, Department department)
+        public void Update(string fullName, int departmentId, string role, string typeMo)
         {
             FullName = fullName;
-            Email = email;
-            Department = department; 
+            Role = role;
+            TypeMo = typeMo;
+            DepartmentId = departmentId;
+            
         }
     }
 }

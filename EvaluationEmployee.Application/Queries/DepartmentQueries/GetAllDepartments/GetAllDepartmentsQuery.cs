@@ -3,7 +3,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.DepartmentQueries.GetAllDepartments;
 
-public class GetAllDepartmentsQuery : IRequest<ResultViewModel<List<SetorViewModel>>>
+public class GetAllDepartmentsQuery : IRequest<ResultViewModel<List<DepartmentViewModel>>>
 {
     
 }

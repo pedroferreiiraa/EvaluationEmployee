@@ -4,7 +4,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.DepartmentQueries.GetAllDepartments;
 
-public class GetAllDepartmentsHandler : IRequestHandler<GetAllDepartmentsQuery, ResultViewModel<List<SetorViewModel>>>
+public class GetAllDepartmentsHandler : IRequestHandler<GetAllDepartmentsQuery, ResultViewModel<List<DepartmentViewModel>>>
 {
     private readonly IDepartmentRepository _repository;
 
@@ -14,12 +14,12 @@ public class GetAllDepartmentsHandler : IRequestHandler<GetAllDepartmentsQuery, 
     }
     
     
-    public async Task<ResultViewModel<List<SetorViewModel>>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
+    public async Task<ResultViewModel<List<DepartmentViewModel>>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
     {
         var departments = await _repository.GetAllAsync();
 
-        var model = departments.Select(SetorViewModel.FromEntity).ToList();
+        var model = departments.Select(DepartmentViewModel.FromEntity).ToList();
        
-        return ResultViewModel<List<SetorViewModel>>.Success(model);
+        return ResultViewModel<List<DepartmentViewModel>>.Success(model);
     }
 }

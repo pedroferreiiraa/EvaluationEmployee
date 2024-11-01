@@ -4,11 +4,13 @@ using MediatR;
 
 namespace _5W2H.Application.Commands.DepartmentCommands.InsertDepartment;
 
-public class InsertSetorCommand : IRequest<ResultViewModel<int>>
+public class InsertDepartmentCommand : IRequest<ResultViewModel<int>>
 {
     public string Nome { get; set; }
+    public int LiderId { get; set; }
+    public int GestorId { get; set; }
     
     
     public Department ToEntity()
-        => new (Nome);
+        => new (Nome, LiderId, GestorId);
 }

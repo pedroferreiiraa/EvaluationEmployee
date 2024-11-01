@@ -5,21 +5,21 @@ namespace _5W2H.Core.Entities
     public class Department : BaseEntity
     {
         public Department() { }
-        public Department(string nome)
+        public Department(string name, int liderId, int gestorId)
         {
-            Nome = nome;
+            Name = name;
+            LiderId = liderId;
+            GestorId = gestorId;
             Users = new List<User>();
         }
 
-        public string Nome { get; set; }
-        public int? LiderId { get; set; }
-        public User? Lider { get; set; }
+        public string Name { get; private set; }
+        public int LiderId { get; private set; }
+        public User Lider { get;  set; }
+        public int GestorId { get; private set; }
+        public User Gestor { get; set; }
 
-        public int? GestorId { get; set; }
+        public ICollection<User> Users { get; set; } = new List<User>();
 
-        [ForeignKey("GestorId")]
-        public User? Gestor { get; set; }
-
-        public ICollection<User> Users { get; set; }
     }
 }

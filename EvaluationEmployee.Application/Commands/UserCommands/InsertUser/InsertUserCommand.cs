@@ -10,7 +10,7 @@ public class InsertUserCommand : IRequest<int>
     public string Password { get; set; }
     public string Email { get; set; }
     public string Role { get; set; }
-    public int DepartmentId { get; set; }
+    public int? DepartmentId { get; set; }
     public int CodFuncionario { get; set;}
     public string TypeMO { get; set; }
 

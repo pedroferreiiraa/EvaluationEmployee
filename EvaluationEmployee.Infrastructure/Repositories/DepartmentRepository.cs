@@ -17,6 +17,7 @@ public class DepartmentRepository : IDepartmentRepository
     public async Task<Department> GetByIdAsync(int id)
     {
         return await _context.Departments
+            .Include(dp => dp.Users)
             .SingleOrDefaultAsync(d => d.Id == id) ?? throw new KeyNotFoundException();
     }
 
@@ -29,8 +30,7 @@ public class DepartmentRepository : IDepartmentRepository
 
     public async Task<List<Department>> GetAllAsync()
     {
-        var departments = await _context.Departments.ToListAsync();
-        return departments.ToList();
+        return await _context.Departments.Include(dp => dp.Users).ToListAsync();
     }
 
     public async Task Update(Department department)

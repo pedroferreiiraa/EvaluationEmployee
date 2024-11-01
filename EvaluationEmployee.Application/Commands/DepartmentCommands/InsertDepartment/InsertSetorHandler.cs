@@ -4,16 +4,16 @@ using MediatR;
 
 namespace _5W2H.Application.Commands.DepartmentCommands.InsertDepartment;
 
-public class InsertSetorHandler : IRequestHandler<InsertSetorCommand, ResultViewModel<int>>
+public class InsertDepartmentHandler : IRequestHandler<InsertDepartmentCommand, ResultViewModel<int>>
 {
     private readonly IDepartmentRepository _repository;
 
-    public InsertSetorHandler(IDepartmentRepository repository)
+    public InsertDepartmentHandler(IDepartmentRepository repository)
     {
         _repository = repository;
     }
     
-    public async Task<ResultViewModel<int>> Handle(InsertSetorCommand request, CancellationToken cancellationToken)
+    public async Task<ResultViewModel<int>> Handle(InsertDepartmentCommand request, CancellationToken cancellationToken)
     {
         var departament = request.ToEntity();
 

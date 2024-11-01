@@ -66,16 +66,16 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GestorId")
+                    b.Property<int>("GestorId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LiderId")
+                    b.Property<int>("LiderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -222,12 +222,14 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.HasOne("_5W2H.Core.Entities.User", "Gestor")
                         .WithMany()
                         .HasForeignKey("GestorId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("_5W2H.Core.Entities.User", "Lider")
                         .WithMany()
                         .HasForeignKey("LiderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Gestor");
 
