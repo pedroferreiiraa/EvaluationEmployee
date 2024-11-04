@@ -8,9 +8,9 @@ namespace _5W2H.Infrastructure.Repositories
 {
     public class LeaderQuestionRepository : ILeaderQuestionRepository
     {
-        private readonly AvaliationDbContext _context;
+        private readonly EvaluationDbContext _context;
 
-        public LeaderQuestionRepository(AvaliationDbContext context)
+        public LeaderQuestionRepository(EvaluationDbContext context)
         {
             _context = context;
         }

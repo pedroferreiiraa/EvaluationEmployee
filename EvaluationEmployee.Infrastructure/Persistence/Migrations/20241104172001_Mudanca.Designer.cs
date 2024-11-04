@@ -11,7 +11,7 @@ using _5W2H.Infrastructure.Persistence;
 
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(AvaliationDbContext))]
+    [DbContext(typeof(EvaluationDbContext))]
     [Migration("20241104172001_Mudanca")]
     partial class Mudanca
     {

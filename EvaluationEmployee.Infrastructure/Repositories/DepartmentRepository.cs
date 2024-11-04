@@ -7,9 +7,9 @@ namespace _5W2H.Infrastructure.Repositories;
 
 public class DepartmentRepository : IDepartmentRepository
 {
-    private readonly AvaliationDbContext _context;
+    private readonly EvaluationDbContext _context;
     
-    public DepartmentRepository(AvaliationDbContext context)
+    public DepartmentRepository(EvaluationDbContext context)
     {
         _context = context;
     }
@@ -33,7 +33,7 @@ public class DepartmentRepository : IDepartmentRepository
         return await _context.Departments.Include(dp => dp.Users).ToListAsync();
     }
 
-    public async Task Update(Department department)
+    public async Task UpdateAsync(Department department)
     {
         _context.Departments.Update(department);
         await _context.SaveChangesAsync();

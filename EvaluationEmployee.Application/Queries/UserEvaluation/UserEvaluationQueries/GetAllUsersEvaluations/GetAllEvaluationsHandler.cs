@@ -4,11 +4,11 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations
 {
-   public class GetAllAvaliationsHandler : IRequestHandler<GetAllAvaliationsQuery, List<UserEvaluationViewModel>>
+   public class GetAllEvaluationsHandler : IRequestHandler<GetAllAvaliationsQuery, List<UserEvaluationViewModel>>
 {
     private readonly IUserEvaluationRepository _userEvaluationRepository;
 
-    public GetAllAvaliationsHandler(IUserEvaluationRepository userEvaluationRepository)
+    public GetAllEvaluationsHandler(IUserEvaluationRepository userEvaluationRepository)
     {
         _userEvaluationRepository = userEvaluationRepository;
     }
@@ -22,6 +22,9 @@ namespace _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations
             AvaliationId = avaliation.Id,
             EmployeeId = avaliation.EmployeeId,
             EvaluatorId = avaliation.EvaluatorId,
+            DateReference = avaliation.DateReference,
+            Status = avaliation.Status,
+            CompletedAt = avaliation.CompletedAt,
             Questions = avaliation.Questions.Select(q => new QuestionViewModel
             {
                 QuestionId = q.Id,

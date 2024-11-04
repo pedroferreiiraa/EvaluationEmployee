@@ -7,9 +7,9 @@ namespace _5W2H.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private readonly AvaliationDbContext _context;
+    private readonly EvaluationDbContext _context;
     
-    public UserRepository(AvaliationDbContext context)
+    public UserRepository(EvaluationDbContext context)
     {
         _context = context;
     }

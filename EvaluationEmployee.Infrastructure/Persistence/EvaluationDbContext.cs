@@ -5,26 +5,26 @@ using Microsoft.Extensions.Configuration;
 
 namespace _5W2H.Infrastructure.Persistence
 {
-    public class AvaliationDbContext : DbContext
+    public class EvaluationDbContext : DbContext
     {
-        public class WhoDbContextFactory : IDesignTimeDbContextFactory<AvaliationDbContext>
+        public class WhoDbContextFactory : IDesignTimeDbContextFactory<EvaluationDbContext>
         {
-            public AvaliationDbContext CreateDbContext(string[] args)
+            public EvaluationDbContext CreateDbContext(string[] args)
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json")
                     .Build();
 
-                var optionsBuilder = new DbContextOptionsBuilder<AvaliationDbContext>();
+                var optionsBuilder = new DbContextOptionsBuilder<EvaluationDbContext>();
                 var connectionString = configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseSqlServer(connectionString);
 
-                return new AvaliationDbContext(optionsBuilder.Options);
+                return new EvaluationDbContext(optionsBuilder.Options);
             }
         }
 
-        public AvaliationDbContext(DbContextOptions<AvaliationDbContext> options) : base(options) { }
+        public EvaluationDbContext(DbContextOptions<EvaluationDbContext> options) : base(options) { }
 
         // Definição dos DbSets
         public DbSet<User> Users { get; set; }

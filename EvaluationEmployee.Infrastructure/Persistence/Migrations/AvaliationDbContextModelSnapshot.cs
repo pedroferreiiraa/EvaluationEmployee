@@ -10,7 +10,7 @@ using _5W2H.Infrastructure.Persistence;
 
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
-    [DbContext(typeof(AvaliationDbContext))]
+    [DbContext(typeof(EvaluationDbContext))]
     partial class AvaliationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
