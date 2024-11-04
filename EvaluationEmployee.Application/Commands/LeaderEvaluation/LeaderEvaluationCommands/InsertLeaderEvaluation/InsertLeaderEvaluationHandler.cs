@@ -4,18 +4,18 @@ using MediatR;
 
 namespace _5W2H.Application.Commands.LeaderAvaliation.LeaderAvaliationCommands.InsertLeaderAvaliation;
 
-public class InsertLeaderAvaliationHandler : IRequestHandler<InsertLeaderAvaliationCommand, ResultViewModel<int>>
+public class InsertLeaderEvaluationHandler : IRequestHandler<InsertLeaderEvaluationCommand, ResultViewModel<int>>
 {
-    private readonly ILeaderAvaliationRepository _leaderAvaliationRepository;
+    private readonly ILeaderEvaluationRepository _leaderEvaluationRepository;
     private readonly ILeaderQuestionRepository _leaderQuestionRepository;
 
-    public InsertLeaderAvaliationHandler(ILeaderAvaliationRepository leaderAvaliationRepository, ILeaderQuestionRepository leaderQuestionRepository)
+    public InsertLeaderEvaluationHandler(ILeaderEvaluationRepository leaderEvaluationRepository, ILeaderQuestionRepository leaderQuestionRepository)
     {
-        _leaderAvaliationRepository = leaderAvaliationRepository;
+        _leaderEvaluationRepository = leaderEvaluationRepository;
         _leaderQuestionRepository = leaderQuestionRepository;
     }
     
-    public async Task<ResultViewModel<int>> Handle(InsertLeaderAvaliationCommand request, CancellationToken cancellationToken)
+    public async Task<ResultViewModel<int>> Handle(InsertLeaderEvaluationCommand request, CancellationToken cancellationToken)
     {
         // Validar se os QuestionIds são válidos
         var questionIds = request.LeaderAnswers.Select(a => a.QuestionId).ToList();
@@ -27,8 +27,8 @@ public class InsertLeaderAvaliationHandler : IRequestHandler<InsertLeaderAvaliat
 
         var leaderAvaliation = request.ToEntity();
 
-        await _leaderAvaliationRepository.AddAsync(leaderAvaliation);
-        await _leaderAvaliationRepository.SaveChangesAsync();
+        await _leaderEvaluationRepository.AddAsync(leaderAvaliation);
+        await _leaderEvaluationRepository.SaveChangesAsync();
 
         return ResultViewModel<int>.Success(leaderAvaliation.Id);
     }

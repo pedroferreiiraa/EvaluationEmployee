@@ -4,20 +4,20 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations
 {
-   public class GetAllAvaliationsHandler : IRequestHandler<GetAllAvaliationsQuery, List<UserAvaliationViewModel>>
+   public class GetAllAvaliationsHandler : IRequestHandler<GetAllAvaliationsQuery, List<UserEvaluationViewModel>>
 {
-    private readonly IUserAvaliationRepository _userAvaliationRepository;
+    private readonly IUserEvaluationRepository _userEvaluationRepository;
 
-    public GetAllAvaliationsHandler(IUserAvaliationRepository userAvaliationRepository)
+    public GetAllAvaliationsHandler(IUserEvaluationRepository userEvaluationRepository)
     {
-        _userAvaliationRepository = userAvaliationRepository;
+        _userEvaluationRepository = userEvaluationRepository;
     }
 
-    public async Task<List<UserAvaliationViewModel>> Handle(GetAllAvaliationsQuery request, CancellationToken cancellationToken)
+    public async Task<List<UserEvaluationViewModel>> Handle(GetAllAvaliationsQuery request, CancellationToken cancellationToken)
     {
-        var avaliations = await _userAvaliationRepository.GetAllAsync();
+        var avaliations = await _userEvaluationRepository.GetAllAsync();
 
-        var avaliationViewModels = avaliations.Select(avaliation => new UserAvaliationViewModel
+        var avaliationViewModels = avaliations.Select(avaliation => new UserEvaluationViewModel
         {
             AvaliationId = avaliation.Id,
             EmployeeId = avaliation.EmployeeId,

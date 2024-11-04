@@ -5,16 +5,16 @@ using MediatR;
 
 namespace _5W2H.Application.Commands.LeaderAvaliation.LeaderAvaliationCommands.InsertLeaderAvaliation;
 
-public class InsertLeaderAvaliationCommand : IRequest<ResultViewModel<int>>
+public class InsertLeaderEvaluationCommand : IRequest<ResultViewModel<int>>
 {
     public int LeaderId { get; set; }
     public int EvaluatorId { get; set; }
     public EvaluationStatusEnum Status { get; set; }
     public List<LeaderAnswerDto> LeaderAnswers { get; set; } = new List<LeaderAnswerDto>();
 
-    public Core.Entities.LeaderAvaliation ToEntity()
+    public Core.Entities.LeaderEvaluation ToEntity()
     {
-        var leaderAvaliation = new Core.Entities.LeaderAvaliation(LeaderId, EvaluatorId, Status);
+        var leaderAvaliation = new Core.Entities.LeaderEvaluation(LeaderId, EvaluatorId, Status);
         foreach (var leaderAnswerDto in LeaderAnswers)
         {
             leaderAvaliation.AddAnswer(leaderAnswerDto.QuestionId, leaderAnswerDto.AnswerNumber);

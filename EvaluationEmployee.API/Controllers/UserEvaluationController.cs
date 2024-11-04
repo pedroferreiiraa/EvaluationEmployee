@@ -1,4 +1,4 @@
-using _5W2H.Application.Commands.UserAvaliationsCommands.InsertUserAvaliation;
+using _5W2H.Application.Commands.UserAvaliation.UserAvaliationsCommands.InsertUserAvaliation;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById;
 using MediatR;
@@ -9,10 +9,10 @@ namespace _5W2H.Api.Controllers;
 
 [ApiController]
 [Route("api/userAvaliations")]
-public class UserAvaliationController : ControllerBase
+public class UserEvaluationController : ControllerBase
 {
     private readonly IMediator _mediator;
-    public UserAvaliationController(IMediator mediator)
+    public UserEvaluationController(IMediator mediator)
     {
         _mediator = mediator;
             

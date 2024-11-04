@@ -3,7 +3,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations
 {
-    public class GetAllAvaliationsQuery : IRequest<List<UserAvaliationViewModel>>
+    public class GetAllAvaliationsQuery : IRequest<List<UserEvaluationViewModel>>
     {
     }
 }
