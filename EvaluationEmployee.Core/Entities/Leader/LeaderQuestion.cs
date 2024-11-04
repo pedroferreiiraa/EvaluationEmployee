@@ -1,10 +1,10 @@
 namespace _5W2H.Core.Entities
 {
-    public class UserQuestion : BaseEntity
+    public class LeaderQuestion : BaseEntity
     {
-        public UserQuestion() { }
+        public LeaderQuestion() { }
     
-        public UserQuestion(string text, string topic)
+        public LeaderQuestion(string text, string topic)
         {
             Text = text;
             Topic = topic;

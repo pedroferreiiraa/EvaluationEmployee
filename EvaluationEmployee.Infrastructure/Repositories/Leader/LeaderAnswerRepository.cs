@@ -2,49 +2,51 @@ using _5W2H.Core.Entities;
 using _5W2H.Core.Repositories;
 using _5W2H.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace _5W2H.Infrastructure.Repositories
 {
-    public class UserAnswerRepository : IUserAnswerRepository
+    public class LeaderAnswerRepository : ILeaderAnswerRepository
     {
         private readonly AvaliationDbContext _context;
 
-        public UserAnswerRepository(AvaliationDbContext context)
+        public LeaderAnswerRepository(AvaliationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<Answer> GetByIdAsync(int id)
+        public async Task<LeaderAnswer> GetByIdAsync(int id)
         {
-            return await _context.Answers
+            return await _context.LeaderAnswers
                 .SingleOrDefaultAsync(a => a.Id == id) ?? throw new KeyNotFoundException($"Answer with ID {id} not found.");
         }
 
-        public async Task<IEnumerable<Answer>> GetAnswersByIdsAsync(List<int> ids)
+        public async Task<IEnumerable<LeaderAnswer>> GetAnswersByIdsAsync(List<int> ids)
         {
-            return await _context.Answers
+            return await _context.LeaderAnswers
                 .Where(a => ids.Contains(a.Id))
                 .ToListAsync();
         }
 
-        public async Task<int> AddAsync(Answer answer)
+     
+
+        public async Task<int> AddAsync(LeaderAnswer leaderAnswer)
         {
-            await _context.Answers.AddAsync(answer);
+            await _context.LeaderAnswers.AddAsync(leaderAnswer);
             await _context.SaveChangesAsync();
-            return answer.Id;
+            return leaderAnswer.Id;
         }
 
-        public async Task<List<Answer>> GetAllAsync()
+        public async Task<List<LeaderAnswer>> GetAllAsync()
         {
-            return await _context.Answers.ToListAsync();
+            return await _context.LeaderAnswers.ToListAsync();
         }
 
-        public async Task UpdateAsync(Answer answer)
+     
+
+        public async Task UpdateAsync(LeaderAnswer leaderAnswer)
         {
-            _context.Answers.Update(answer);
+            _context.LeaderAnswers.Update(leaderAnswer);
             await _context.SaveChangesAsync();
         }
 

@@ -29,9 +29,12 @@ namespace _5W2H.Infrastructure.Persistence
         // Definição dos DbSets
         public DbSet<User> Users { get; set; }
         public DbSet<UserAvaliation> UserAvaliations { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Answer> Answers { get; set; }
         public DbSet<UserQuestion> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<LeaderAvaliation> LeaderAvaliations { get; set; }
+        public DbSet<LeaderQuestion> LeaderQuestions { get; set; }
+        public DbSet<LeaderAnswer> LeaderAnswers { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,15 +42,30 @@ namespace _5W2H.Infrastructure.Persistence
                 .HasMany(a => a.Answers)
                 .WithOne(ans => ans.UserAvaliation)
                 .HasForeignKey(ans => ans.AvaliationId);
+            
+            modelBuilder.Entity<LeaderAvaliation>()
+                .HasMany(a => a.LeaderAnswers)
+                .WithOne(ans => ans.LeaderAvaliation)
+                .HasForeignKey(ans => ans.AvaliationId);
 
             modelBuilder.Entity<Answer>()
                 .HasOne(ans => ans.UserQuestion)
+                .WithMany()
+                .HasForeignKey(ans => ans.QuestionId);
+            
+            modelBuilder.Entity<LeaderAnswer>()
+                .HasOne(ans => ans.LeaderQuestion)
                 .WithMany()
                 .HasForeignKey(ans => ans.QuestionId);
 
             modelBuilder.Entity<Answer>()
                 .HasIndex(ans => new { ans.AvaliationId, ans.QuestionId })
                 .IsUnique();
+            
+            modelBuilder.Entity<LeaderAnswer>()
+                .HasIndex(ans => new { ans.AvaliationId, ans.QuestionId })
+                .IsUnique();
+            
             modelBuilder.Entity<Department>()
                 .HasOne(d => d.Gestor)
                 .WithMany()
