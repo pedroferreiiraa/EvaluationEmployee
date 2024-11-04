@@ -29,8 +29,8 @@ namespace _5W2H.Infrastructure.Persistence
         // Definição dos DbSets
         public DbSet<User> Users { get; set; }
         public DbSet<UserAvaliation> UserAvaliations { get; set; }
-        public DbSet<UserQuestion> Questions { get; set; }
-        public DbSet<Answer> Answers { get; set; }
+        public DbSet<UserQuestion> UserQuestions { get; set; }
+        public DbSet<Answer> UserAnswers { get; set; }
         public DbSet<LeaderAvaliation> LeaderAvaliations { get; set; }
         public DbSet<LeaderQuestion> LeaderQuestions { get; set; }
         public DbSet<LeaderAnswer> LeaderAnswers { get; set; }

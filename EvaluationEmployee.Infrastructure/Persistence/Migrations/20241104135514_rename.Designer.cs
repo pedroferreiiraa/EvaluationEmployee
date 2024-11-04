@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _5W2H.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using _5W2H.Infrastructure.Persistence;
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AvaliationDbContext))]
-    partial class AvaliationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241104135514_rename")]
+    partial class rename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

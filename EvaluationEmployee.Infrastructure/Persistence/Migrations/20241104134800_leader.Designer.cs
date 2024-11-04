@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _5W2H.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using _5W2H.Infrastructure.Persistence;
 namespace _5W2H.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AvaliationDbContext))]
-    partial class AvaliationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241104134800_leader")]
+    partial class leader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +55,7 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
                     b.HasIndex("AvaliationId", "QuestionId")
                         .IsUnique();
 
-                    b.ToTable("UserAnswers");
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("_5W2H.Core.Entities.Department", b =>
@@ -288,7 +291,7 @@ namespace _5W2H.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("UserAvaliationId");
 
-                    b.ToTable("UserQuestions");
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("_5W2H.Core.Entities.Answer", b =>
