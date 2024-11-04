@@ -4,18 +4,18 @@ using MediatR;
 
 namespace _5W2H.Application.Commands.UserAvaliation.UserAvaliationsCommands.InsertUserAvaliation
 {
-    public class InsertUserAvaliationHandler : IRequestHandler<InsertUserAvaliationCommand, ResultViewModel<int>>
+    public class InsertUserEvaluationHandler : IRequestHandler<InsertUserEvaluationCommand, ResultViewModel<int>>
     {
         private readonly IUserEvaluationRepository _userEvaluationRepository;
         private readonly IUserQuestionRepository _userQuestionRepository;
 
-        public InsertUserAvaliationHandler(IUserEvaluationRepository userEvaluationRepository, IUserQuestionRepository userQuestionRepository)
+        public InsertUserEvaluationHandler(IUserEvaluationRepository userEvaluationRepository, IUserQuestionRepository userQuestionRepository)
         {
             _userEvaluationRepository = userEvaluationRepository;
             _userQuestionRepository = userQuestionRepository;
         }
 
-        public async Task<ResultViewModel<int>> Handle(InsertUserAvaliationCommand request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel<int>> Handle(InsertUserEvaluationCommand request, CancellationToken cancellationToken)
         {
             // Validar se os QuestionIds são válidos
             var questionIds = request.Answers.Select(a => a.QuestionId).ToList();
