@@ -37,10 +37,10 @@ public static class InfrastructureModule
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
         services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IUserAvaliationRepository, UserAvaliationRepository>();
+        services.AddScoped<IUserEvaluationRepository, UserEvaluationRepository>();
         services.AddScoped<IUserQuestionRepository, UserQuestionRepository>();
         services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
-        services.AddScoped<ILeaderAvaliationRepository, LeaderAvaliationRepository>();
+        services.AddScoped<ILeaderEvaluationRepository, LeaderEvaluationRepository>();
         services.AddScoped<ILeaderQuestionRepository, LeaderQuestionRepository>();
         services.AddScoped<ILeaderAnswerRepository, LeaderAnswerRepository>();
 

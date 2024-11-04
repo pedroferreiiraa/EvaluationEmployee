@@ -28,24 +28,24 @@ namespace _5W2H.Infrastructure.Persistence
 
         // Definição dos DbSets
         public DbSet<User> Users { get; set; }
-        public DbSet<UserAvaliation> UserAvaliations { get; set; }
+        public DbSet<UserEvaluation> UserAvaliations { get; set; }
         public DbSet<UserQuestion> UserQuestions { get; set; }
         public DbSet<Answer> UserAnswers { get; set; }
-        public DbSet<LeaderAvaliation> LeaderAvaliations { get; set; }
+        public DbSet<LeaderEvaluation> LeaderAvaliations { get; set; }
         public DbSet<LeaderQuestion> LeaderQuestions { get; set; }
         public DbSet<LeaderAnswer> LeaderAnswers { get; set; }
         public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserAvaliation>()
+            modelBuilder.Entity<UserEvaluation>()
                 .HasMany(a => a.Answers)
-                .WithOne(ans => ans.UserAvaliation)
+                .WithOne(ans => ans.UserEvaluation)
                 .HasForeignKey(ans => ans.AvaliationId);
             
-            modelBuilder.Entity<LeaderAvaliation>()
+            modelBuilder.Entity<LeaderEvaluation>()
                 .HasMany(a => a.LeaderAnswers)
-                .WithOne(ans => ans.LeaderAvaliation)
+                .WithOne(ans => ans.LeaderEvaluation)
                 .HasForeignKey(ans => ans.AvaliationId);
 
             modelBuilder.Entity<Answer>()
