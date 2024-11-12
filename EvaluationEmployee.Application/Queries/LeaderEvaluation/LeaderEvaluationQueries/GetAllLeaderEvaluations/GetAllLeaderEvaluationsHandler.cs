@@ -5,7 +5,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.LeaderAvaliation.LeaderAvaliationQueries.GetAllLeaderAvaliations;
 
-public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderAvaliationsQuery, List<LeaderEvaluationViewModel>>
+public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderEvaluationsQuery, List<LeaderEvaluationViewModel>>
 {
     private readonly ILeaderEvaluationRepository _leaderEvaluationRepository;
 
@@ -16,7 +16,7 @@ public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderAvalia
 
     
     
-    public async Task<List<LeaderEvaluationViewModel>> Handle(GetAllLeaderAvaliationsQuery request, CancellationToken cancellationToken)
+    public async Task<List<LeaderEvaluationViewModel>> Handle(GetAllLeaderEvaluationsQuery request, CancellationToken cancellationToken)
     {
         var leaderAvaliation = await _leaderEvaluationRepository.GetAllAsync();
 

@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Expor a porta que a aplicação usa (ajuste se necessário)
-EXPOSE 80
+EXPOSE 5001
 
 # Definir o entrypoint
 ENTRYPOINT ["dotnet", "EvaluationEmployee.API.dll"]

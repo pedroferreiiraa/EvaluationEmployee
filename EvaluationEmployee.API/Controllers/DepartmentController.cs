@@ -1,4 +1,5 @@
 using _5W2H.Application.Commands.DepartmentCommands.InsertDepartment;
+using _5W2H.Application.Commands.DepartmentCommands.UpdateDepartment;
 using _5W2H.Application.Queries.DepartmentQueries.GetAllDepartments;
 using _5W2H.Application.Queries.DepartmentQueries.GetDepartmentById;
 using MediatR;
@@ -47,4 +48,12 @@ public class DepartmentController : ControllerBase
 
         return Ok(department);
     }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(UpdateDepartmentCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+    
 }

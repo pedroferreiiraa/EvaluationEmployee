@@ -2,19 +2,19 @@ using _5W2H.Core.Entities;
 
 namespace _5W2H.Application.Models;
 
-public class AnswerViewModel
+public class LeaderAnswerViewModel
 {
     public int AnswerId { get; set; }
     public int QuestionId { get; set; }
     public int AnswerNumber { get; set; }
 
-    public static AnswerViewModel FromEntity(Answer answer)
+    public static LeaderAnswerViewModel FromEntity(LeaderAnswer leaderAnswer)
     {
-        return new AnswerViewModel
+        return new LeaderAnswerViewModel
         {
-            AnswerId = answer.Id,
-            QuestionId = answer.QuestionId,
-            AnswerNumber = answer.AnswerNumber
+            AnswerId = leaderAnswer.Id,
+            QuestionId = leaderAnswer.QuestionId,
+            AnswerNumber = leaderAnswer.AnswerNumber
         };
     }
     

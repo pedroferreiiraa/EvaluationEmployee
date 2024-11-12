@@ -4,7 +4,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById
 {
-    public class GetUserEvaluationByIdHandler : IRequestHandler<GetUserAvaliationByIdQuery, ResultViewModel<UserEvaluationViewModel>>
+    public class GetUserEvaluationByIdHandler : IRequestHandler<GetUserEvaluationByIdQuery, ResultViewModel<UserEvaluationViewModel>>
     {
         private readonly IUserEvaluationRepository _repository;
 
@@ -13,7 +13,7 @@ namespace _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById
             _repository = repository;
         }
         
-        public async Task<ResultViewModel<UserEvaluationViewModel>> Handle(GetUserAvaliationByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel<UserEvaluationViewModel>> Handle(GetUserEvaluationByIdQuery request, CancellationToken cancellationToken)
     {
         var avaliation = await _repository.GetByIdAsync(request.Id);
 

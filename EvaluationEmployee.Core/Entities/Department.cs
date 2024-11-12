@@ -21,5 +21,12 @@ namespace _5W2H.Core.Entities
 
         public ICollection<User> Users { get; set; } = new List<User>();
 
+        public void Update( int liderId, int gestorId)
+        {
+            
+            LiderId = liderId;
+            GestorId = gestorId;
+        }
+
     }
 }

@@ -23,9 +23,16 @@ public class UserRepository : IUserRepository
 
     public async Task<User> GetUserByEmailAndPassword(string email, string passwordHash)
     {
-        return await _context
+        var user = await _context
             .Users
-            .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash) ?? throw new InvalidOperationException();
+            .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash);
+
+        if (user == null || user.IsDeleted)
+        {
+            return null;
+        }
+
+        return user;
     }
 
     public async Task<User> AddAsync(User user)

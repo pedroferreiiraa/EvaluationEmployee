@@ -23,7 +23,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Queries\UserAnwersQueries\GetUserAnswerById\" />
+      <Folder Include="Commands\UserEvaluation\" />
+      <Folder Include="Queries\UserEvaluation\" />
     </ItemGroup>
 
 </Project>

@@ -22,7 +22,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUs
         
         var user = await _userRepository.GetUserByEmailAndPassword(request.Email, passwordHash);
 
-        if (user == null)
+        if (user == null || user.IsDeleted )
         {
             return null;
         }

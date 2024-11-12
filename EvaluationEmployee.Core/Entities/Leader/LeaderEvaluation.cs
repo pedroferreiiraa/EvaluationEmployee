@@ -8,11 +8,12 @@ public class LeaderEvaluation : BaseEntity
 {
     public LeaderEvaluation(){}
 
-    public LeaderEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status)
+    public LeaderEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference)
     {
         EmployeeId = employeeId;
         EvaluatorId = evaluationId;
         Status = status;
+        DateReference = reference;
 
         LeaderAnswers = new List<LeaderAnswer>();
     }
@@ -38,7 +39,7 @@ public class LeaderEvaluation : BaseEntity
     
     public void Complete()
     {
-        if (Status == EvaluationStatusEnum.InProgress)
+        if (Status == EvaluationStatusEnum.Created)
         {
             Status = EvaluationStatusEnum.Completed;
             CompletedAt = DateTime.Now;

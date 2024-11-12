@@ -1,9 +1,6 @@
 using _5W2H.Application.Commands.UserQuestionCommands.InsertQuestion;
-using _5W2H.Application.Models;
 using _5W2H.Application.Queries.UserQuestionQueries.GetAllUserQuestions;
-using Azure;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _5W2H.Api.Controllers;

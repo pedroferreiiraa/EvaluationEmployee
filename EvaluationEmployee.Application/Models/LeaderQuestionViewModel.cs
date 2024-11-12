@@ -6,10 +6,10 @@ using _5W2H.Core.Entities;
 
 namespace _5W2H.Application.Models
 {
-    public class QuestionViewModel
+    public class LeaderQuestionViewModel
     {
-        public QuestionViewModel() {}
-        public QuestionViewModel(int questionId, string text, string topic) 
+        public LeaderQuestionViewModel() {}
+        public LeaderQuestionViewModel(int questionId, string text, string topic) 
         {
             QuestionId = questionId;
             Text = text;
@@ -21,7 +21,7 @@ namespace _5W2H.Application.Models
         public string Text { get; set; }
         public string Topic { get; set;}
 
-        public static QuestionViewModel FromEntity(UserQuestion question)
-            => new (question.Id, question.Text, question.Topic);
+        public static LeaderQuestionViewModel FromEntity(LeaderQuestion leaderQuestion)
+            => new (leaderQuestion.Id, leaderQuestion.Text, leaderQuestion.Topic);
     }
 }

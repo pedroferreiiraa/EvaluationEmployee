@@ -10,7 +10,7 @@ public class LeaderAnswer : BaseEntity
     }
 
     public int AvaliationId { get; private set; }
-    public LeaderAvaliation LeaderAvaliation { get; private set; }
+    public LeaderEvaluation LeaderEvaluation { get; private set; }
     public int QuestionId { get; private set; }
     public LeaderQuestion LeaderQuestion { get; private set; }
     public int AnswerNumber { get; private set; }

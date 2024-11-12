@@ -1,4 +1,5 @@
 using _5W2H.Application.Commands.UserAvaliation.UserAvaliationsCommands.InsertUserAvaliation;
+using _5W2H.Application.Commands.UserEvaluation.UserEvaluationsCommands.CompleteUserEvaluation;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById;
 using MediatR;
@@ -19,7 +20,7 @@ public class UserEvaluationController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(InsertUserAvaliationCommand command)
+    public async Task<IActionResult> Post(InsertUserEvaluationCommand command)
     {
         var result = await _mediator.Send(command);
         return Ok(result);
@@ -28,7 +29,7 @@ public class UserEvaluationController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAvaliations()
     {
-        var query = new GetAllAvaliationsQuery();
+        var query = new GetAllEvaluationsQuery();
         var avaliations = await _mediator.Send(query);
         return Ok(avaliations);
     }
@@ -36,10 +37,23 @@ public class UserEvaluationController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAvaliationById(int id)
     {
-        var query = new GetUserAvaliationByIdQuery(id);
+        var query = new GetUserEvaluationByIdQuery(id);
         var avaliation = await _mediator.Send(query);
         return Ok(avaliation);
     }
 
+    [HttpPut("{id}/complete")]
+    public async Task<IActionResult> Complete(int id)
+    {
+        var coomand = new CompleteUserEvaluationCommand(id);
+        var result  = await _mediator.Send(coomand);
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result);
+        }
+        
+        return Ok(result);
+    }
     
 }

@@ -1,20 +1,18 @@
-using _5W2H.Application.Commands.UserQuestionCommands.InsertQuestion;
-using _5W2H.Application.Models;
-using _5W2H.Application.Queries.UserQuestionQueries.GetAllUserQuestions;
-using Azure;
+using _5W2H.Application.Commands.LeaderAvaliation.LeaderQuestionCommands.InsertLeaderQuestion;
+using _5W2H.Application.Commands.LeaderEvaluation.LeaderEvaluationCommands.CompleteLeaderEvaluation;
+using _5W2H.Application.Queries.LeaderAvaliation.LeaderQuestionQueries.GetAllLeaderQuestions;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _5W2H.Api.Controllers;
 
 [ApiController]
-[Route("/api/questions")]
-public class UserQuestionsController : ControllerBase
+[Route("/api/leaderQuestions")]
+public class LeaderQuestionsController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public UserQuestionsController(IMediator mediator)
+    public LeaderQuestionsController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -22,14 +20,14 @@ public class UserQuestionsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllQuestions()
     {
-        var query = new GetAllUsersQuestionsQuery();
+        var query = new GetAllLeadersQuestionsQuery();
         var questions = await _mediator.Send(query);
 
         return Ok(questions);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(InsertQuestionCommand command)
+    public async Task<IActionResult> Post(InsertLeaderQuestionCommand command)
     {
         var result = await _mediator.Send(command);
         
