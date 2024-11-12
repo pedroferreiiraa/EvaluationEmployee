@@ -13,7 +13,7 @@ namespace _5W2H.Application.Models
         public string DateReference { get; set; }
         public EvaluationStatusEnum Status { get; set; }
         public DateTime CompletedAt { get; set; }
-        public List<QuestionViewModel> Questions { get; set; } = new();
+        
         public List<AnswerViewModel> Answers { get; set; } = new();
 
         public static UserEvaluationViewModel FromEntity(UserEvaluation userEvaluation)
@@ -27,7 +27,7 @@ namespace _5W2H.Application.Models
                 DateReference = userEvaluation.DateReference,
                 Status = userEvaluation.Status,
                 CompletedAt = userEvaluation.CompletedAt,
-                Questions = userEvaluation.Questions.Select(q => QuestionViewModel.FromEntity(q)).ToList(),
+              
                 Answers = userEvaluation.Answers.Select(a => AnswerViewModel.FromEntity(a)).ToList()
             };
         }
