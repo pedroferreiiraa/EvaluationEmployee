@@ -1,4 +1,5 @@
 
+using _5W2H.Application.Queries.LeaderAvaliation.LeaderAvaliationQueries.GetAllLeaderAvaliations;
 using _5W2H.Core.Entities;
 using _5W2H.Core.Enums;
 
@@ -21,6 +22,8 @@ namespace _5W2H.Application.Models
 
         public List<LeaderQuestionViewModel> LeaderQuestions { get; set; } = new();
         public List<LeaderAnswerViewModel> LeaderAnswers { get; set; } = new();
+        
+        public List<TopicLeaderAverageViewModel> TopicAverages { get; set; }
 
         public static LeaderEvaluationViewModel FromEntity(LeaderEvaluation leaderEvaluation)
         {

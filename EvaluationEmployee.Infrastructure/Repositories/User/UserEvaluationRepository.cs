@@ -18,7 +18,7 @@ public class UserEvaluationRepository : IUserEvaluationRepository
     {
         return await _context.UserAvaliations
             .Include(ua => ua.Answers)
-            .ThenInclude(a => a.UserQuestion) // Inclui a UserQuestion em cada Answer
+            .ThenInclude(a => a.UserQuestion) 
             .ToListAsync();
     }
 

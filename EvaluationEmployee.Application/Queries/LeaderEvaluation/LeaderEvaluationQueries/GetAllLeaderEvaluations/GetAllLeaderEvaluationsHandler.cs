@@ -5,6 +5,14 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.LeaderAvaliation.LeaderAvaliationQueries.GetAllLeaderAvaliations;
 
+
+public class TopicLeaderAverageViewModel
+{
+    public string Topic { get; set; } // Nome do tópico
+    public double Average { get; set; } // Média das respostas
+}
+
+
 public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderEvaluationsQuery, List<LeaderEvaluationViewModel>>
 {
     private readonly ILeaderEvaluationRepository _leaderEvaluationRepository;
@@ -15,37 +23,45 @@ public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderEvalua
     }
 
     
-    
-    public async Task<List<LeaderEvaluationViewModel>> Handle(GetAllLeaderEvaluationsQuery request, CancellationToken cancellationToken)
+    public async Task<List<LeaderEvaluationViewModel>> Handle(GetAllLeaderEvaluationsQuery request,
+        CancellationToken cancellationToken)
     {
-        var leaderAvaliation = await _leaderEvaluationRepository.GetAllAsync();
+        var evaluations = await _leaderEvaluationRepository.GetAllAsync();
 
-        var leaderAvaliationViewModels = leaderAvaliation.Select(leaderAvaliation => new LeaderEvaluationViewModel
+        var evaluationViewModels = evaluations.Select(evaluation =>
         {
-            AvaliationId = leaderAvaliation.Id,
-            EmployeeId = leaderAvaliation.EmployeeId,
-            EvaluatorId = leaderAvaliation.EvaluatorId,
-            DateReference = leaderAvaliation.DateReference,
-            ImprovePoints = leaderAvaliation.ImprovePoints,
-            Pdi = leaderAvaliation.Pdi,
-            Goals = leaderAvaliation.Goals,
-            SixMonthAlignment = leaderAvaliation.SixMonthAlignment,
-            Status = leaderAvaliation.Status,
-            CompletedAt = leaderAvaliation.CompletedAt,
-            LeaderQuestions = leaderAvaliation.LeaderQuestions.Select(q => new LeaderQuestionViewModel
+            var topicAverages = evaluation.LeaderAnswers
+                .Where(a => a.LeaderQuestion != null) // Verifica se a UserQuestion não é nula
+                .GroupBy(a => a.LeaderQuestion.Topic) // Usa a propriedade correta
+                .Select(g => new TopicLeaderAverageViewModel
+                {
+                    Topic = g.Key,
+                    Average = g.Average(a => a.AnswerNumber)
+                })
+                .ToList();
+
+            return new LeaderEvaluationViewModel
             {
-                QuestionId = q.Id,
-                Text = q.Text,
-                Topic = q.Topic,
-            }).ToList(),
-            LeaderAnswers = leaderAvaliation.LeaderAnswers.Select(a => new LeaderAnswerViewModel
-            {
-                AnswerId = a.Id,
-                QuestionId = a.QuestionId,
-                AnswerNumber = a.AnswerNumber
-            }).ToList()
+                AvaliationId = evaluation.Id,
+                EmployeeId = evaluation.EmployeeId,
+                EvaluatorId = evaluation.EvaluatorId,
+                DateReference = evaluation.DateReference,
+                ImprovePoints = evaluation.ImprovePoints,
+                Pdi = evaluation.Pdi,
+                Goals = evaluation.Goals,
+                SixMonthAlignment = evaluation.SixMonthAlignment,
+                Status = evaluation.Status,
+                CompletedAt = evaluation.CompletedAt,
+                LeaderAnswers = evaluation.LeaderAnswers.Select(a => new LeaderAnswerViewModel
+                {
+                    AnswerId = a.Id,
+                    QuestionId = a.QuestionId,
+                    AnswerNumber = a.AnswerNumber
+                }).ToList(),
+                TopicAverages = topicAverages
+            };
         }).ToList();
-        
-        return leaderAvaliationViewModels;
+
+        return evaluationViewModels;
     }
 }

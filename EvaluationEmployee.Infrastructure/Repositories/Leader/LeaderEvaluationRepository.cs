@@ -17,8 +17,8 @@ public class LeaderEvaluationRepository : ILeaderEvaluationRepository
     public async Task<List<LeaderEvaluation>> GetAllAsync()
     {
         return await _context.LeaderAvaliations
-            .Include(a => a.LeaderQuestions)
             .Include(a => a.LeaderAnswers)
+            .ThenInclude(a => a.LeaderQuestion)
             .ToListAsync();
     }
 
