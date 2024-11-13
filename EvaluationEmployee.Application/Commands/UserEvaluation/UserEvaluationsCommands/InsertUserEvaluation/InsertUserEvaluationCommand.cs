@@ -17,6 +17,7 @@ namespace _5W2H.Application.Commands.UserAvaliation.UserAvaliationsCommands.Inse
         public string? Goals { get;  set; }
         public string? SixMonthAlignment { get;  set; }
         public List<UserAnswerDto> Answers { get; set; } = new List<UserAnswerDto>();
+        
 
         public Core.Entities.UserEvaluation ToEntity()
         {

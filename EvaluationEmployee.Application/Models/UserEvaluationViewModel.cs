@@ -1,4 +1,5 @@
 
+using _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations;
 using _5W2H.Core.Entities;
 using _5W2H.Core.Enums;
 
@@ -19,6 +20,8 @@ namespace _5W2H.Application.Models
         public DateTime CompletedAt { get; set; }
         
         public List<AnswerViewModel> Answers { get; set; } = new();
+        
+        public List<TopicAverageViewModel> TopicAverages { get; set; }
 
         public static UserEvaluationViewModel FromEntity(UserEvaluation userEvaluation)
         {
@@ -35,8 +38,8 @@ namespace _5W2H.Application.Models
                 SixMonthAlignment = userEvaluation.SixMonthAlignment,
                 Status = userEvaluation.Status,
                 CompletedAt = userEvaluation.CompletedAt,
-              
-                Answers = userEvaluation.Answers.Select(a => AnswerViewModel.FromEntity(a)).ToList()
+                Answers = userEvaluation.Answers.Select(a => AnswerViewModel.FromEntity(a)).ToList(),
+                
             };
         }
     }

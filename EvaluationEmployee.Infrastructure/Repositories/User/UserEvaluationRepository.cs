@@ -17,8 +17,8 @@ public class UserEvaluationRepository : IUserEvaluationRepository
     public async Task<List<UserEvaluation>> GetAllAsync()
     {
         return await _context.UserAvaliations
-            .Include(a => a.Questions)
-            .Include(a => a.Answers)
+            .Include(ua => ua.Answers)
+            .ThenInclude(a => a.UserQuestion) // Inclui a UserQuestion em cada Answer
             .ToListAsync();
     }
 
