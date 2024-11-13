@@ -8,20 +8,28 @@ public class LeaderEvaluation : BaseEntity
 {
     public LeaderEvaluation(){}
 
-    public LeaderEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference)
+    public LeaderEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
     {
         EmployeeId = employeeId;
         EvaluatorId = evaluationId;
         Status = status;
         DateReference = reference;
+        ImprovePoints = improvePoints;
+        Pdi = pdi;
+        Goals = goals;
+        SixMonthAlignment = sixMonthAlignment;
 
         LeaderAnswers = new List<LeaderAnswer>();
     }
 
     public int EmployeeId { get; private set; }
     public int EvaluatorId { get; private set; }
-
     public string DateReference { get; private set; }
+    
+    public string? ImprovePoints { get; private set;}
+    public string? Pdi { get; private set; }
+    public string? Goals { get; private set; }
+    public string? SixMonthAlignment { get; private set; }
     public EvaluationStatusEnum Status { get; private set; }
     public DateTime CompletedAt { get; private set; }
     public virtual ICollection<LeaderQuestion> LeaderQuestions { get; private set; }

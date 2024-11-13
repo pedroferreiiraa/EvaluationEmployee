@@ -8,30 +8,33 @@ public class UserEvaluation : BaseEntity
 {
     public UserEvaluation(){}
 
-    public UserEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference)
+    public UserEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
     {
         EmployeeId = employeeId;
         EvaluatorId = evaluationId;
         Status = status;
         DateReference = reference;
+        ImprovePoints = improvePoints;
+        Pdi = pdi;
+        Goals = goals;
+        SixMonthAlignment = sixMonthAlignment;
 
         Answers = new List<Answer>();
     }
-
     public int EmployeeId { get; private set; }
     public int EvaluatorId { get; private set; }
-    
     public string DateReference { get; private set; }
-    
+    public string? ImprovePoints { get; private set;}
+    public string? Pdi { get; private set; }
+    public string? Goals { get; private set; }
+    public string? SixMonthAlignment { get; private set; }
     public EvaluationStatusEnum Status { get; private set; }
     public DateTime CompletedAt { get; private set; }
-    
     public virtual ICollection<UserQuestion> Questions { get; private set; }
     public virtual ICollection<Answer> Answers { get; private set; }
 
     public void AddAnswer(int questionId, int answerNumber)
     {
-        // Verifique se já existe uma resposta para essa pergunta
         if (Answers.Any(a => a.QuestionId == questionId))
         {
             throw new InvalidOperationException("A resposta para esta pergunta já foi adicionada.");

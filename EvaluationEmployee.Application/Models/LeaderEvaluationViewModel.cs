@@ -11,7 +11,10 @@ namespace _5W2H.Application.Models
         public int EmployeeId { get; set; }
         public int EvaluatorId { get; set; } 
         public string DateReference { get; set; }
-        
+        public string? ImprovePoints { get;  set;}
+        public string? Pdi { get;  set; }
+        public string? Goals { get;  set; }
+        public string? SixMonthAlignment { get;  set; }
         public EvaluationStatusEnum Status { get; set; }
         
         public DateTime CompletedAt { get; set; }
@@ -27,6 +30,10 @@ namespace _5W2H.Application.Models
                 EmployeeId = leaderEvaluation.EmployeeId,
                 EvaluatorId = leaderEvaluation.EvaluatorId,
                 DateReference = leaderEvaluation.DateReference,
+                ImprovePoints = leaderEvaluation.ImprovePoints,
+                Pdi = leaderEvaluation.Pdi,
+                Goals = leaderEvaluation.Goals,
+                SixMonthAlignment = leaderEvaluation.SixMonthAlignment,
                 Status = leaderEvaluation.Status,
                 CompletedAt = leaderEvaluation.CompletedAt,
                 LeaderQuestions = leaderEvaluation.LeaderQuestions.Select(q => LeaderQuestionViewModel.FromEntity(q)).ToList(),

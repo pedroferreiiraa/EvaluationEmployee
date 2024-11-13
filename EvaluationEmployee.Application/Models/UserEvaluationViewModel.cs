@@ -11,6 +11,10 @@ namespace _5W2H.Application.Models
         public int EvaluatorId { get; set; }
         public int EmployeeId { get; set; }
         public string DateReference { get; set; }
+        public string? ImprovePoints { get;  set;}
+        public string? Pdi { get;  set; }
+        public string? Goals { get;  set; }
+        public string? SixMonthAlignment { get;  set; }
         public EvaluationStatusEnum Status { get; set; }
         public DateTime CompletedAt { get; set; }
         
@@ -25,6 +29,10 @@ namespace _5W2H.Application.Models
            
                 EvaluatorId = userEvaluation.EvaluatorId,
                 DateReference = userEvaluation.DateReference,
+                ImprovePoints = userEvaluation.ImprovePoints,
+                Pdi = userEvaluation.Pdi,
+                Goals = userEvaluation.Goals,
+                SixMonthAlignment = userEvaluation.SixMonthAlignment,
                 Status = userEvaluation.Status,
                 CompletedAt = userEvaluation.CompletedAt,
               
