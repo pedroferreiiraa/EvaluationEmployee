@@ -23,6 +23,10 @@ namespace _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations
             EmployeeId = avaliation.EmployeeId,
             EvaluatorId = avaliation.EvaluatorId,
             DateReference = avaliation.DateReference,
+            ImprovePoints = avaliation.ImprovePoints,
+            Pdi = avaliation.Pdi,
+            Goals = avaliation.Goals,
+            SixMonthAlignment = avaliation.SixMonthAlignment,
             Status = avaliation.Status,
             CompletedAt = avaliation.CompletedAt,
             

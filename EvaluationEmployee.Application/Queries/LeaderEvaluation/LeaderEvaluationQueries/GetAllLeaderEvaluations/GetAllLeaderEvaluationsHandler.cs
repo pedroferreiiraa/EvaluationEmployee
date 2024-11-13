@@ -26,6 +26,10 @@ public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderEvalua
             EmployeeId = leaderAvaliation.EmployeeId,
             EvaluatorId = leaderAvaliation.EvaluatorId,
             DateReference = leaderAvaliation.DateReference,
+            ImprovePoints = leaderAvaliation.ImprovePoints,
+            Pdi = leaderAvaliation.Pdi,
+            Goals = leaderAvaliation.Goals,
+            SixMonthAlignment = leaderAvaliation.SixMonthAlignment,
             Status = leaderAvaliation.Status,
             CompletedAt = leaderAvaliation.CompletedAt,
             LeaderQuestions = leaderAvaliation.LeaderQuestions.Select(q => new LeaderQuestionViewModel
