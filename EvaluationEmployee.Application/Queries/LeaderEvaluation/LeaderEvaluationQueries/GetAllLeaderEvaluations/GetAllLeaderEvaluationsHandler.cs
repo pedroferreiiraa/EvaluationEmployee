@@ -23,45 +23,15 @@ public class GetAllLeaderEvaluationsHandler : IRequestHandler<GetAllLeaderEvalua
     }
 
     
-    public async Task<List<LeaderEvaluationViewModel>> Handle(GetAllLeaderEvaluationsQuery request,
-        CancellationToken cancellationToken)
+    public async Task<List<LeaderEvaluationViewModel>> Handle(GetAllLeaderEvaluationsQuery request, CancellationToken cancellationToken )
     {
         var evaluations = await _leaderEvaluationRepository.GetAllAsync();
-
-        var evaluationViewModels = evaluations.Select(evaluation =>
-        {
-            var topicAverages = evaluation.LeaderAnswers
-                .Where(a => a.LeaderQuestion != null) // Verifica se a UserQuestion não é nula
-                .GroupBy(a => a.LeaderQuestion.Topic) // Usa a propriedade correta
-                .Select(g => new TopicLeaderAverageViewModel
-                {
-                    Topic = g.Key,
-                    Average = g.Average(a => a.AnswerNumber)
-                })
-                .ToList();
-
-            return new LeaderEvaluationViewModel
-            {
-                AvaliationId = evaluation.Id,
-                EmployeeId = evaluation.EmployeeId,
-                EvaluatorId = evaluation.EvaluatorId,
-                DateReference = evaluation.DateReference,
-                ImprovePoints = evaluation.ImprovePoints,
-                Pdi = evaluation.Pdi,
-                Goals = evaluation.Goals,
-                SixMonthAlignment = evaluation.SixMonthAlignment,
-                Status = evaluation.Status,
-                CompletedAt = evaluation.CompletedAt,
-                LeaderAnswers = evaluation.LeaderAnswers.Select(a => new LeaderAnswerViewModel
-                {
-                    AnswerId = a.Id,
-                    QuestionId = a.QuestionId,
-                    AnswerNumber = a.AnswerNumber
-                }).ToList(),
-                TopicAverages = topicAverages
-            };
-        }).ToList();
+        
+        var evaluationViewModels = evaluations
+            .Select(LeaderEvaluationViewModel.FromEntity)
+            .ToList();
 
         return evaluationViewModels;
     }
+    
 }
