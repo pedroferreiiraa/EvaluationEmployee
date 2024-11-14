@@ -48,7 +48,7 @@ namespace _5W2H.Application.Models
                 Status = userEvaluation.Status,
                 CompletedAt = userEvaluation.CompletedAt,
                 Answers = userEvaluation.Answers.Select(a => AnswerViewModel.FromEntity(a)).ToList(),
-                TopicAverages = topicAverages // Atribui o cálculo à propriedade TopicAverages
+                TopicAverages = topicAverages 
             };
         }
 

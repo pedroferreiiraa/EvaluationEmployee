@@ -49,8 +49,8 @@ namespace _5W2H.Application.Models
                 SixMonthAlignment = leaderEvaluation.SixMonthAlignment,
                 Status = leaderEvaluation.Status,
                 CompletedAt = leaderEvaluation.CompletedAt,
-                LeaderQuestions = leaderEvaluation.LeaderQuestions.Select(q => LeaderQuestionViewModel.FromEntity(q)).ToList(),
-                LeaderAnswers = leaderEvaluation.LeaderAnswers.Select(a => LeaderAnswerViewModel.FromEntity(a)).ToList()
+                LeaderAnswers = leaderEvaluation.LeaderAnswers.Select(a => LeaderAnswerViewModel.FromEntity(a)).ToList(),
+                TopicAverages = topicAverages
             };
         }
     }
