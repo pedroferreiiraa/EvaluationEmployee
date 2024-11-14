@@ -4,6 +4,7 @@ using MediatR;
 
 namespace _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById
 {
+    
     public class GetUserEvaluationByIdHandler : IRequestHandler<GetUserEvaluationByIdQuery, ResultViewModel<UserEvaluationViewModel>>
     {
         private readonly IUserEvaluationRepository _repository;

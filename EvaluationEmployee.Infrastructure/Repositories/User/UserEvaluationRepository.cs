@@ -25,8 +25,8 @@ public class UserEvaluationRepository : IUserEvaluationRepository
     public async Task<UserEvaluation> GetByIdAsync(int id)
     {
         return await _context.UserAvaliations
-            .Include(ua => ua.Questions)
             .Include(ua => ua.Answers)
+            .ThenInclude(a => a.UserQuestion)
             .FirstOrDefaultAsync(ua => ua.Id == id);
     }
 

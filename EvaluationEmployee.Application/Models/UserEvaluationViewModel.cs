@@ -25,11 +25,20 @@ namespace _5W2H.Application.Models
 
         public static UserEvaluationViewModel FromEntity(UserEvaluation userEvaluation)
         {
+            var topicAverages = userEvaluation.Answers
+                .Where(a => a.UserQuestion != null) // Verifica se a pergunta não é nula
+                .GroupBy(a => a.UserQuestion.Topic)  // Agrupa pelo tópico
+                .Select(g => new TopicAverageViewModel
+                {
+                    Topic = g.Key,
+                    Average = g.Average(a => a.AnswerNumber) // Calcula a média das respostas
+                })
+                .ToList();
+
             return new UserEvaluationViewModel
             {
                 AvaliationId = userEvaluation.Id,
                 EmployeeId = userEvaluation.EmployeeId,
-           
                 EvaluatorId = userEvaluation.EvaluatorId,
                 DateReference = userEvaluation.DateReference,
                 ImprovePoints = userEvaluation.ImprovePoints,
@@ -39,9 +48,10 @@ namespace _5W2H.Application.Models
                 Status = userEvaluation.Status,
                 CompletedAt = userEvaluation.CompletedAt,
                 Answers = userEvaluation.Answers.Select(a => AnswerViewModel.FromEntity(a)).ToList(),
-                
+                TopicAverages = topicAverages // Atribui o cálculo à propriedade TopicAverages
             };
         }
+
     }
     
     

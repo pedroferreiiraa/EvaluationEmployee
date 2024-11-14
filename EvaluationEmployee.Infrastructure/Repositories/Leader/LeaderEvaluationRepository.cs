@@ -25,8 +25,8 @@ public class LeaderEvaluationRepository : ILeaderEvaluationRepository
     public async Task<LeaderEvaluation> GetByIdAsync(int id)
     {
         return await _context.LeaderAvaliations
-            .Include(ua => ua.LeaderQuestions)
             .Include(ua => ua.LeaderAnswers)
+            .ThenInclude(a => a.LeaderQuestion)
             .FirstOrDefaultAsync(ua => ua.Id == id);
     }
 
