@@ -2,6 +2,8 @@ using _5W2H.Application.Commands.UserAvaliation.UserAvaliationsCommands.InsertUs
 using _5W2H.Application.Commands.UserEvaluation.UserEvaluationsCommands.CompleteUserEvaluation;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById;
+using _5W2H.Application.Queries.UserEvaluation.UserEvaluationQueries.GetOthersEvaluations;
+using _5W2H.Application.Queries.UserEvaluation.UserEvaluationQueries.GetSelfEvaluation;
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +34,32 @@ public class UserEvaluationController : ControllerBase
         var query = new GetAllEvaluationsQuery();
         var avaliations = await _mediator.Send(query);
         return Ok(avaliations);
+    }
+    
+    [HttpGet("self/{userId}")]
+    public async Task<IActionResult> GetSelfEvaluation(int userId)
+    {
+        var query = new GetSelfEvaluationQuery(userId);
+        var result = await _mediator.Send(query);
+
+        if (result == null)
+            return NotFound(result.Message);
+
+        return Ok(result);
+    }
+    
+    [HttpGet("others/{employeeId}")]
+    public async Task<IActionResult> GetEvaluationsByOthers(int employeeId)
+    {
+        var query = new GetEvaluationsByOthersQuery(employeeId);
+        var result = await _mediator.Send(query);
+
+        if (result.Data == null || !result.Data.Any())
+        {
+            return NotFound("No evaluations found.");
+        }
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

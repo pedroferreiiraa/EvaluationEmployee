@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using _5W2H.Core.Entities;
 using _5W2H.Core.Repositories;
 using _5W2H.Infrastructure.Persistence;
@@ -76,6 +77,27 @@ public class UserEvaluationRepository : IUserEvaluationRepository
         return _context.UserAvaliations.AsQueryable();
     }
 
+    public async Task<List<UserEvaluation>> GetEvaluationsByUserIdAsync(int userId)
+    {
+        return await _context.UserAvaliations
+            .Include(ua => ua.Answers)
+            .ThenInclude(a => a.UserQuestion)
+            .Where(ua => ua.EmployeeId == userId)
+            .ToListAsync();
+    }
+
+    public async Task<List<UserEvaluation>> GetEvaluationsByOthers(int employeeId)
+    {
+        // Aqui, vamos filtrar avaliações onde o EvaluatorId não é igual ao EmployeeId.
+        return await _context.UserAvaliations
+            .Include(ua => ua.Answers)
+            .ThenInclude(a => a.UserQuestion)
+            .Where(ua => ua.EmployeeId == employeeId && ua.EvaluatorId != employeeId)
+            .ToListAsync();
+    }
+
+
+
     public async Task<int> DeleteAsync(int id)
     {
         var project =  _context.UserAvaliations.SingleOrDefault(p => p.Id == id);
@@ -92,6 +114,8 @@ public class UserEvaluationRepository : IUserEvaluationRepository
         return project.Id;
 
     }
+    
+ 
 
     
 }

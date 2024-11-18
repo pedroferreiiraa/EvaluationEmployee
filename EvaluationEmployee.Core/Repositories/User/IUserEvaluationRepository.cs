@@ -12,5 +12,9 @@ public interface IUserEvaluationRepository
     Task<int> DeleteAsync(int id);
     Task SaveChangesAsync();
     IQueryable<UserEvaluation> Query();
-    
+    Task<List<UserEvaluation>> GetEvaluationsByUserIdAsync(int userId);
+    Task<List<UserEvaluation>> GetEvaluationsByOthers(int employeeId);
+
+
+
 }
