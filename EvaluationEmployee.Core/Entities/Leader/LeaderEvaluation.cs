@@ -8,9 +8,9 @@ public class LeaderEvaluation : BaseEntity
 {
     public LeaderEvaluation(){}
 
-    public LeaderEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
+    public LeaderEvaluation(int leaderId, int evaluationId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
     {
-        EmployeeId = employeeId;
+        LeaderId = leaderId;
         EvaluatorId = evaluationId;
         Status = status;
         DateReference = reference;
@@ -22,7 +22,7 @@ public class LeaderEvaluation : BaseEntity
         LeaderAnswers = new List<LeaderAnswer>();
     }
 
-    public int EmployeeId { get; private set; }
+    public int LeaderId { get; private set; }
     public int EvaluatorId { get; private set; }
     public string DateReference { get; private set; }
     

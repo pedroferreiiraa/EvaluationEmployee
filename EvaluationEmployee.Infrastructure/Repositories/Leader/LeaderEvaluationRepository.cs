@@ -36,7 +36,7 @@ public class LeaderEvaluationRepository : ILeaderEvaluationRepository
         return await _context.LeaderAvaliations
             .Include(a => a.LeaderQuestions)
             .Include(a => a.LeaderAnswers)
-            .Where(a => a.EmployeeId == userId)
+            .Where(a => a.LeaderId == userId)
             .ToListAsync();
     }
 

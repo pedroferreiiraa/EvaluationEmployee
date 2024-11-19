@@ -9,7 +9,7 @@ namespace _5W2H.Application.Models
     {
         
         public int AvaliationId { get; set; }
-        public int EmployeeId { get; set; }
+        public int LeaderId { get; set; }
         public int EvaluatorId { get; set; } 
         public string DateReference { get; set; }
         public string? ImprovePoints { get;  set;}
@@ -19,8 +19,7 @@ namespace _5W2H.Application.Models
         public EvaluationStatusEnum Status { get; set; }
         
         public DateTime CompletedAt { get; set; }
-
-        public List<LeaderQuestionViewModel> LeaderQuestions { get; set; } = new();
+        
         public List<LeaderAnswerViewModel> LeaderAnswers { get; set; } = new();
         
         public List<TopicLeaderAverageViewModel> TopicAverages { get; set; }
@@ -40,7 +39,7 @@ namespace _5W2H.Application.Models
             return new LeaderEvaluationViewModel
             {
                 AvaliationId = leaderEvaluation.Id,
-                EmployeeId = leaderEvaluation.EmployeeId,
+                LeaderId = leaderEvaluation.LeaderId,
                 EvaluatorId = leaderEvaluation.EvaluatorId,
                 DateReference = leaderEvaluation.DateReference,
                 ImprovePoints = leaderEvaluation.ImprovePoints,
