@@ -103,7 +103,7 @@ public class UserEvaluationRepository : IUserEvaluationRepository
         var project =  _context.UserAvaliations.SingleOrDefault(p => p.Id == id);
         
         if (project == null)
-            throw new InvalidOperationException("Projeto não encontrado");
+            throw new InvalidOperationException("Avaliação não encontrado");
         
         project.SetAsDeleted();
         

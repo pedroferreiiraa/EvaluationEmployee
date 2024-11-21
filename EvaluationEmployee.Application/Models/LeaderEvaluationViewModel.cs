@@ -27,12 +27,12 @@ namespace _5W2H.Application.Models
         public static LeaderEvaluationViewModel FromEntity(LeaderEvaluation leaderEvaluation)
         {
             var topicAverages = leaderEvaluation.LeaderAnswers
-                .Where(a => a.LeaderQuestion != null) // Verifica se a pergunta não é nula
-                .GroupBy(a => a.LeaderQuestion.Topic)  // Agrupa pelo tópico
+                .Where(a => a.LeaderQuestion != null) 
+                .GroupBy(a => a.LeaderQuestion.Topic)  
                 .Select(g => new TopicLeaderAverageViewModel
                 {
                     Topic = g.Key,
-                    Average = g.Average(a => a.AnswerNumber) // Calcula a média das respostas
+                    Average = g.Average(a => a.AnswerNumber) 
                 })
                 .ToList();
             

@@ -8,10 +8,10 @@ public class LeaderEvaluation : BaseEntity
 {
     public LeaderEvaluation(){}
 
-    public LeaderEvaluation(int leaderId, int evaluationId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
+    public LeaderEvaluation(int leaderId, int evaluatorId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
     {
         LeaderId = leaderId;
-        EvaluatorId = evaluationId;
+        EvaluatorId = evaluatorId;
         Status = status;
         DateReference = reference;
         ImprovePoints = improvePoints;
@@ -37,12 +37,11 @@ public class LeaderEvaluation : BaseEntity
 
     public void AddAnswer(int questionId, int answerNumber)
     {
-        // Verifique se já existe uma resposta para essa pergunta
         if (LeaderAnswers.Any(a => a.QuestionId == questionId))
         {
             throw new InvalidOperationException("A resposta para esta pergunta já foi adicionada.");
         }
-        LeaderAnswers.Add(new LeaderAnswer(this.Id, questionId, answerNumber));
+        LeaderAnswers.Add(new LeaderAnswer(Id, questionId, answerNumber));
     }
     
     public void Complete()

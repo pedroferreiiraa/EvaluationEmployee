@@ -1,10 +1,8 @@
 using _5W2H.Application.Models;
 using _5W2H.Core.Repositories;
-using _5W2H.Infrastructure.Persistence.Migrations;
 using MediatR;
 
 namespace _5W2H.Application.Queries.LeaderAvaliation.LeaderAvaliationQueries.GetAllLeaderAvaliations;
-
 
 public class TopicLeaderAverageViewModel
 {

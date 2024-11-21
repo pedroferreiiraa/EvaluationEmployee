@@ -26,5 +26,4 @@ public class InsertLeaderEvaluationCommand : IRequest<ResultViewModel<int>>
         }
         return leaderAvaliation;
     }
-    
 }

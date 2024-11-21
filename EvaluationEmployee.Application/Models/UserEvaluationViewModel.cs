@@ -26,12 +26,12 @@ namespace _5W2H.Application.Models
         public static UserEvaluationViewModel FromEntity(UserEvaluation userEvaluation)
         {
             var topicAverages = userEvaluation.Answers
-                .Where(a => a.UserQuestion != null) // Verifica se a pergunta não é nula
-                .GroupBy(a => a.UserQuestion.Topic)  // Agrupa pelo tópico
+                .Where(a => a.UserQuestion != null) 
+                .GroupBy(a => a.UserQuestion.Topic)  
                 .Select(g => new TopicAverageViewModel
                 {
                     Topic = g.Key,
-                    Average = g.Average(a => a.AnswerNumber) // Calcula a média das respostas
+                    Average = g.Average(a => a.AnswerNumber) 
                 })
                 .ToList();
 

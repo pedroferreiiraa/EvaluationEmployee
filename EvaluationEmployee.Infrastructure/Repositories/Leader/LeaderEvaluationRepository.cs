@@ -77,6 +77,25 @@ public class LeaderEvaluationRepository : ILeaderEvaluationRepository
         return _context.LeaderAvaliations.AsQueryable();
     }
 
+    public async Task<List<LeaderEvaluation>> GetEvaluationsByLeaderIdAsync(int userId)
+    {
+        return await _context.LeaderAvaliations
+            .Include(a => a.LeaderAnswers)
+            .ThenInclude(a => a.LeaderQuestion)
+            .Where(a => a.LeaderId == userId)
+            .ToListAsync();
+    }
+
+    public async Task<List<LeaderEvaluation>> GetLeaderEvaluationsByOthers(int leaderId)
+    {
+        return await _context.LeaderAvaliations
+            .Include(a => a.LeaderAnswers)
+            .ThenInclude(a => a.LeaderQuestion)
+            .Where(a => a.LeaderId == leaderId && a.EvaluatorId != leaderId)
+            .ToListAsync();
+    }
+
+
     public async Task<int> DeleteAsync(int id)
     {
         var project =  _context.LeaderAvaliations.SingleOrDefault(p => p.Id == id);

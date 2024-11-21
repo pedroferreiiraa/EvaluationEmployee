@@ -2,6 +2,8 @@ using _5W2H.Application.Commands.LeaderAvaliation.LeaderAvaliationCommands.Inser
 using _5W2H.Application.Commands.LeaderEvaluation.LeaderEvaluationCommands.CompleteLeaderEvaluation;
 using _5W2H.Application.Queries.LeaderAvaliation.LeaderAvaliationQueries.GetAllLeaderAvaliations;
 using _5W2H.Application.Queries.LeaderAvaliation.LeaderAvaliationQueries.GetLeaderAvaliationById;
+using _5W2H.Application.Queries.LeaderEvaluation.LeaderEvaluationQueries.GetOthersLeadersEvaluations;
+using _5W2H.Application.Queries.LeaderEvaluation.LeaderEvaluationQueries.GetSelfLeaderEvaluation;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetAllUsersAvaliations;
 using _5W2H.Application.Queries.UserAvaliationQueries.GetUserAvaliationById;
 using MediatR;
@@ -34,6 +36,33 @@ public class LeaderEvaluationController : ControllerBase
         var query = new GetAllLeaderEvaluationsQuery();
         var avaliations = await _mediator.Send(query);
         return Ok(avaliations);
+    }
+
+    [HttpGet("self/{userId}")]
+    public async Task<IActionResult> GetLeaderAvaliations(int userId)
+    {
+        var query = new GetSelfLeaderEvaluationQuery(userId);
+        var result = await _mediator.Send(query);
+
+        if (result == null)
+        {
+            return NotFound(result.Message);
+        }
+        
+        return Ok(result);
+    }
+
+    [HttpGet("others/{leaderId}")]
+    public async Task<IActionResult> GetLeaderEvaluations(int leaderId)
+    {
+        var query = new GetLeaderEvaluationsByOtherQuery(leaderId);
+        var result = await _mediator.Send(query);
+
+        if (result == null)
+        {
+            return NotFound(result.Message);
+        }
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

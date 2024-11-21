@@ -8,10 +8,10 @@ public class UserEvaluation : BaseEntity
 {
     public UserEvaluation(){}
 
-    public UserEvaluation(int employeeId, int evaluationId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
+    public UserEvaluation(int employeeId, int evaluatorId, EvaluationStatusEnum status, string reference, string improvePoints, string pdi, string goals, string sixMonthAlignment)
     {
         EmployeeId = employeeId;
-        EvaluatorId = evaluationId;
+        EvaluatorId = evaluatorId;
         Status = status;
         DateReference = reference;
         ImprovePoints = improvePoints;

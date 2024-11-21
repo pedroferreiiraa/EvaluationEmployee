@@ -12,5 +12,7 @@ public interface ILeaderEvaluationRepository
     Task<int> DeleteAsync(int id);
     Task SaveChangesAsync();
     IQueryable<LeaderEvaluation> Query();
+    Task<List<LeaderEvaluation>> GetEvaluationsByLeaderIdAsync(int userId);
+    Task<List<LeaderEvaluation>> GetLeaderEvaluationsByOthers(int leaderId);
     
 }
