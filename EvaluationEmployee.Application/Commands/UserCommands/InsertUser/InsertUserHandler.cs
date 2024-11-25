@@ -19,9 +19,8 @@ public class InsertUserHandler : IRequestHandler<InsertUserCommand, int>
     
     public async Task<int> Handle(InsertUserCommand request, CancellationToken cancellationToken)
     {
-        var passwordHash = _authService.ComputeSha256Hash(request.Password);
         
-        var user = request.ToEntity(passwordHash);
+        var user = request.ToEntity(request.Password);
         
         await _userRepository.AddAsync(user);
         await _userRepository.SaveChangesAsync();

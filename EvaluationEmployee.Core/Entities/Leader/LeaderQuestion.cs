@@ -1,6 +1,6 @@
 namespace _5W2H.Core.Entities
 {
-    public class LeaderQuestion : BaseEntity
+    public class LeaderQuestion 
     {
         public LeaderQuestion() { }
     
@@ -9,8 +9,9 @@ namespace _5W2H.Core.Entities
             Text = text;
             Topic = topic;
         }
-
-        public string Text { get; private set; } 
-        public string Topic { get; private set; }
+    
+        public int Id { get; private set; }
+        public string Text { get; set; } 
+        public string Topic { get; set; }
     }
 }

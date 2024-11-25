@@ -18,9 +18,9 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUs
     
     public async Task<LoginUserViewModel> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
-        var passwordHash = _authService.ComputeSha256Hash(request.Password);
+        // var passwordHash = _authService.ComputeSha256Hash(request.Password);
         
-        var user = await _userRepository.GetUserByEmailAndPassword(request.Email, passwordHash);
+        var user = await _userRepository.GetUserByEmailAndPassword(request.Email, request.Password);
 
         if (user == null || user.IsDeleted )
         {

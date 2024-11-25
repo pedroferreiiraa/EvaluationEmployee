@@ -1,6 +1,6 @@
 namespace _5W2H.Core.Entities
 {
-    public class UserQuestion : BaseEntity
+    public class UserQuestion 
     {
         public UserQuestion() { }
     
@@ -9,7 +9,8 @@ namespace _5W2H.Core.Entities
             Text = text;
             Topic = topic;
         }
-
+    
+        public int Id { get; private set; }
         public string Text { get; private set; } 
         public string Topic { get; private set; }
     }
