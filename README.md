@@ -1,6 +1,6 @@
-# EvaluationEmployee.API
+# EvaluationEmployee
 
-**EvaluationEmployee.API** é uma API desenvolvida para gerenciar avaliações de colaboradores e líderes em um ambiente corporativo. A plataforma permite o registro, consulta e acompanhamento de avaliações, garantindo uma gestão centralizada e eficiente do desempenho de equipes. Este projeto é uma ótima oportunidade para praticar e aplicar conceitos de **C#, .NET** e **arquitetura de software**.
+**EvaluationEmployee** é uma API desenvolvida para gerenciar avaliações de colaboradores e líderes em um ambiente corporativo. A plataforma permite o registro, consulta e acompanhamento de avaliações, garantindo uma gestão centralizada e eficiente do desempenho de equipes. Este projeto é uma ótima oportunidade para praticar e aplicar conceitos de **C#, .NET** e **arquitetura de software**.
 
 ---
 
@@ -50,4 +50,4 @@
 
 ---
 
-O **EvaluationEmployee.API** foi projetado para empresas que desejam implementar uma gestão de desempenho eficiente e organizada, contribuindo para o crescimento e desenvolvimento contínuo de seus colaboradores!
+O **EvaluationEmployee** foi projetado para empresas que desejam implementar uma gestão de desempenho eficiente e organizada, contribuindo para o crescimento e desenvolvimento contínuo de seus colaboradores!
